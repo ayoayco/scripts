@@ -24,4 +24,4 @@ $ vim ~/.ayo.config
 ## Planned
 
 1. config - create configuration for variables (eg, editor, locations)
-2.
+2. journal sync - sync journal entries
