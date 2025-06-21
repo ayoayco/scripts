@@ -1,7 +1,7 @@
 #! /usr/bin/bash
 
 # Load config
-. ./.config
+. ${HOME}/.ayo.config
 
 journal_dir="${notes_dir}/Journal"
 month_dir=$(date +"%m %b")
@@ -10,7 +10,7 @@ full_path="${journal_dir}/${month_dir}/${file_name}"
 
 # IF Not Exists: create file & echo date
 if ! test -f "$full_path"; then
-  install -Dv /dev/null $full_path
+  install -Dv /dev/null "$full_path"
   # TODO: update to correct heading from old entries
   # Jun 17, 2025, Tue 10:24 PM
   heading=$(date +'%b %d, %Y, %a %r')
