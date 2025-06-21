@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 
-journal_dir="/home/ayo/notes/Journal"
+journal_dir="${HOME}/notes/Journal"
 month_dir=$(date +"%m %b")
 file_name=$(date +'%m.%d.%Y').md
 full_path="${journal_dir}/${month_dir}/${file_name}"
