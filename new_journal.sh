@@ -5,9 +5,8 @@ echo "NEW NOTE"
 journal_dir="/home/ayo/notes/Journal"
 
 date_today=$(date +'%m-%d-%Y')
-date_today_file_name=$(date +'%m.%d.%Y')
+file_name=$(date +'%m.%d.%Y').md
 month_dir=$(date +"%m %b")
-file_name="${date_today_file_name}.md"
 full_path="${journal_dir}/${month_dir}/${file_name}"
 
 # IF Not Exists: create file & echo date
