@@ -1,5 +1,10 @@
 #! /usr/bin/bash
 
-echo '>>> running' $1
-
-. ${HOME}/Projects/scripts/$1.sh $2 $3 $4 $5
+case $1 in
+  j | journal)
+    . ${HOME}/Projects/scripts/journal.sh
+    ;;
+  c | config)
+    echo 'Config script in-progress'
+    ;;
+esac
