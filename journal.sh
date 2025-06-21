@@ -12,7 +12,8 @@ full_path="${journal_dir}/${month_dir}/${file_name}"
 if ! test -f "$full_path"; then
   install -Dv /dev/null $full_path
   # TODO: update to correct heading from old entries
-  heading=$(date +'%m-%d-%Y')
+  # Jun 17, 2025, Tue 10:24 PM
+  heading=$(date +'%b %d, %Y, %a %r')
   echo $heading > "$full_path"
 fi
 
