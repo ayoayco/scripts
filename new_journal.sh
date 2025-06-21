@@ -1,7 +1,5 @@
 #! /usr/bin/bash
 
-echo "NEW NOTE"
-
 journal_dir="/home/ayo/notes/Journal"
 
 file_name=$(date +'%m.%d.%Y').md
@@ -13,7 +11,6 @@ if ! test -f "$full_path"; then
   install -Dv /dev/null $full_path
   # TODO: update to correct heading from old entries
   heading=$(date +'%m-%d-%Y')
-  echo writing $heading to "$full_path"
   echo $heading > "$full_path"
 fi
 
@@ -21,4 +18,4 @@ fi
 vim "$full_path"
 
 # Report; TODO: write log
-echo ">>> " $month_dir / $file_name
+echo ">>> " $full_path
