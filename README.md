@@ -8,7 +8,13 @@ Personal BASH scripts for productivity
 $ git clone git@git.sr.ht:~ayoayco/scripts
 ```
 
-2. update your .bashrc to add an alias for the parent command `scripts/ayo.sh`
+2. Copy config and populate
+```bash
+$ cp example.config .config
+$ vim .config
+```
+
+3. update your .bashrc to add an alias for the parent command `scripts/ayo.sh`
 
 ## Scripts
 
@@ -18,4 +24,4 @@ $ git clone git@git.sr.ht:~ayoayco/scripts
 ## Planned
 
 1. config - create configuration for variables (eg, editor, locations)
-2. 
+2.
