@@ -3,18 +3,18 @@
 Personal BASH scripts for productivity
 
 ## Setup
-1. clone the repo
+1\. clone the repo
 ```bash
 $ git clone git@git.sr.ht:~ayoayco/scripts
 ```
 
-2. Copy config and populate
+2\. Copy config and populate
 ```bash
 $ cp example.config ~/.ayo.config
 $ vim ~/.ayo.config
 ```
 
-3. update your .bashrc to add an alias for the parent command `scripts/ayo.sh`
+3\. update your .bashrc to add an alias for the parent command `scripts/ayo.sh`
 
 ## Scripts
 
