@@ -10,8 +10,8 @@ $ git clone git@git.sr.ht:~ayoayco/scripts
 
 2\. Copy config and populate
 ```bash
-$ cp example.config ~/.ayo.config
-$ vim ~/.ayo.config
+$ cp example.config ~/ayo.conf
+$ vim ~/ayo.conf
 ```
 
 3\. update your .bashrc to add an alias for the parent command `scripts/ayo.sh`

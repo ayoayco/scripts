@@ -1,7 +1,7 @@
 #! /usr/bin/bash
 
 # Load config
-. ${HOME}/.ayo.config
+. ${HOME}/ayo.conf
 
 command=$1
 journal_dir="${notes_dir}/Journal"
