@@ -23,7 +23,7 @@ else
   fi
 
   # Open in editor
-  vim "$full_path"
+  typora "$full_path"
 
   # Report; TODO: write log
   echo ">>> " $full_path
