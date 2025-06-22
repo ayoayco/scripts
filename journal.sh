@@ -4,12 +4,23 @@
 . ${HOME}/.ayo.config
 
 command=$1
+journal_dir="${notes_dir}/Journal"
+month_dir=$(date +"%m %b")
+
 
 if [ "$1" = "sync" ]; then
-  echo 'sync' #TODO: git pull, git add ... git commit, git push
+  {
+    path="${journal_dir}/${month_dir}/"
+    cd "$path"
+    git pull
+    git add .
+    git commit -m "[script] update/add entrie/s"
+    git push
+  } || {
+    # Report; TODO: write log
+    echo ">>> Sync failed"
+  }
 else
-  journal_dir="${notes_dir}/Journal"
-  month_dir=$(date +"%m %b")
   file_name=$(date +'%m.%d.%Y').md
   full_path="${journal_dir}/${month_dir}/${file_name}"
 
