@@ -16,6 +16,9 @@ $ vim ~/.ayo.config
 
 3\. update your .bashrc to add an alias for the parent command `scripts/ayo.sh`
 
+## Dependencies
+1. Typora - used as default editor for notes
+
 ## Scripts
 
 1. ayo - parent command, lists all available scripts or accepts parameters
