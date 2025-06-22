@@ -12,6 +12,9 @@ case $1 in
 
   ## SCRIPTS
 
+  m | mac)
+    quickemu --vm macos-monterey.conf
+    ;;
   j | journal)
     . ${HOME}/Projects/scripts/journal.sh $2 $3 $4 $5
     ;;
