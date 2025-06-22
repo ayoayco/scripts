@@ -1,9 +1,17 @@
 #! /usr/bin/bash
 
 case $1 in
-  js)
+  ## SHORTCUTS
+
+  js) # js - journal sync
     . ${HOME}/Projects/scripts/journal.sh sync
     ;;
+  jn) # js - journal note
+    . ${HOME}/Projects/scripts/journal.sh note
+    ;;
+
+  ## SCRIPTS
+
   j | journal)
     . ${HOME}/Projects/scripts/journal.sh $2 $3 $4 $5
     ;;
