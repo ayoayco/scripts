@@ -10,7 +10,7 @@ month_dir=$(date +"%m %b")
 
 if [ "$1" = "sync" ]; then
   {
-    path="${journal_dir}/${month_dir}/"
+    path="${notes_dir}/"
     cd "$path"
     git pull
     git add .
