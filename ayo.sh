@@ -32,6 +32,9 @@ case $1 in
   nr) # Notes remove
     . ${HOME}/Projects/scripts/notes.sh remove $2 $3 $4 $5 $6 $7 $8 $9
     ;;
+  na) # Notes archive
+    . ${HOME}/Projects/scripts/notes.sh archive $2 $3 $4 $5 $6 $7 $8 $9
+    ;;
   nt) # Notes using typora
     . ${HOME}/Projects/scripts/notes.sh -t $2 $3 $4 $5 $6 $7 $8 $9
     ;;
