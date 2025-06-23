@@ -44,7 +44,6 @@ if [ "$1" = "stat" ]; then
 elif [ "$1" = "push" ]; then
   gitPush
 else
-  echo ">>> $1"
   if [ "$1" = "g" ] || [ "$1" = "git" ]; then
     git reset HEAD -- .
     git add .
