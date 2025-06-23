@@ -9,9 +9,20 @@ case $1 in
   jt) # journal using typora
     . ${HOME}/Projects/scripts/journal.sh -t $2 $3 $4 $5 $6 $7 $8 $9
     ;;
+
+  nl) # Notes list
+    . ${HOME}/Projects/scripts/notes.sh list $2 $3 $4 $5 $6 $7 $8 $9
+    ;;
+  no) # Notes open
+    . ${HOME}/Projects/scripts/notes.sh open $2 $3 $4 $5 $6 $7 $8 $9
+    ;;
+  nr) # Notes remove
+    . ${HOME}/Projects/scripts/notes.sh remove $2 $3 $4 $5 $6 $7 $8 $9
+    ;;
   nt) # Notes using typora
     . ${HOME}/Projects/scripts/notes.sh -t $2 $3 $4 $5 $6 $7 $8 $9
     ;;
+
   gs) # git status
     . ${HOME}/Projects/scripts/git.sh stat $2 $3 $4 $5 $6 $7 $8 $9
     ;;
