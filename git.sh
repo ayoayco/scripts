@@ -39,7 +39,9 @@ gitPush() {
   }
 }
 
-if [ "$1" = "stat" ]; then
+if [ "$1" = "diff" ] || [ "$1" = "d" ]; then
+  git diff --staged
+elif [ "$1" = "stat" ]; then
   gitStatus
 elif [ "$1" = "push" ]; then
   gitPush
