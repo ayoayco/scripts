@@ -15,18 +15,17 @@ getopts "t" typora; #check if -t flag is given
 function editFile() {
   notesSync
 
-  edit_file="${tasks_dir}/$1"
   # Open in editor
   if [ "$typora" = "t" ]; then
-    typora "$edit_file"
+    typora "$1"
   else
-    vim "$edit_file"
+    vim "$1"
   fi
 
   notesSync
 }
 
-function createTask() {
+function createtask() {
   {
     read -p "Create new task: " title
 
@@ -40,17 +39,18 @@ function createTask() {
 
     # IF Not Exists: create file & echo date
     if ! test -f "$full_path"; then
-      install -Dv /dev/null "$full_path"
+      install -Dv /dev/null "$full_path" >/dev/null
       # TODO: update to correct heading from old entries
       heading="# $title"
       echo $heading > "$full_path"
       date_heading=$(date +'%b %d, %Y, %a %r')
       echo $date_heading >> "$full_path"
     fi
+
     editFile "$full_path"
 
   } || {
-    echo ">>> New note failed"
+    echo ">>> New task failed"
   }
 }
 
@@ -65,62 +65,113 @@ if [ "$1" = "list" ] || [ "$1" = "l" ]; then
     echo "$index) $file"
   done
 
-## OPEN a note from a list
+## OPEN a task from a list
 elif [ "$1" = "open" ] || [ "$1" = "o" ]; then
   files=( $tasks_dir/*.md )
-  PS3="Open file #: "
-  echo "Please select a file to OPEN."
-  notesSync
-  select file in "${files[@]##*/}"; do
-      {
-        editFile "$file"
-        break
-      } ||
-      {
-        echo "bad choice"
-        break
-      }
-    done
 
-## MARK AS DONE a note from a list
+  if ! [ "$2" = "" ]; then
+    index=($2-1)
+    open_file=${files[$index]}
+    editFile "$open_file"
+    notesSync
+  else
+    PS3="Open file #: "
+    echo "Please select a file to OPEN."
+    notesSync
+    select file in "${files[@]##*/}"; do
+        {
+          echo "Opening $file"
+          editFile "$file"
+          break
+        } ||
+        {
+          echo "bad choice"
+          break
+        }
+      done
+  fi
+
+## MARK AS DONE a task from a list
 elif [ "$1" = "done" ] || [ "$1" = "d" ]; then
   files=( $tasks_dir/*.md )
-  PS3="Mark as Done, file #: "
-  echo "Mark a task as DONE ($(ls ${notes_dir}/tasks/done | wc -l))."
   notesSync
-  select file in "${files[@]##*/}"; do
-      {
-        mv "${tasks_dir}/${file}" "${tasks_dir}/done"
-        notesSync
-        break
-      } ||
-      {
-        echo "bad choice"
-        break
-      }
-    done
 
+  if ! [ "$2" = "" ]; then
+    index=($2-1)
+    done_file=${files[$index]}
+    mv "$done_file" "${tasks_dir}/done/"
+    notesSync
+  else
+    PS3="Mark as Done, file #: "
+    echo "Mark a task as DONE ($(ls ${tasks_dir}/done/ | wc -l))."
+    select file in "${files[@]##*/}"; do
+        {
+          mv "${tasks_dir}/${file}" "${tasks_dir}/done/"
+          notesSync
+          break
+        } ||
+        {
+          echo "bad choice"
+          break
+        }
+      done
+  fi
 
-## REMOVE a note from a list
+## REMOVE a task from a list
 elif [ "$1" = "remove" ] || [ "$1" = "rm" ]; then
   files=( $tasks_dir/*.md )
-  PS3="Remove file #: "
-  echo "Please select a file to REMOVE."
   notesSync
-  select file in "${files[@]##*/}"; do
-      {
-        echo  "Removing $file"
-        rm "${tasks_dir}/${file}"
-        notesSync
-        break
-      } ||
-      {
-        echo "bad choice"
-        break
-      }
-    done
 
-## CREATE a note (default)
+  if ! [ "$2" = "" ]; then
+    index=($2-1)
+    remove_file=${files[$index]}
+    echo  "Removing $remove_file"
+    rm "$remove_file"
+    notesSync
+  else
+    PS3="Remove task #: "
+    echo "Select a task to DELETE."
+    select file in "${files[@]##*/}"; do
+        {
+          echo  "Removing $file"
+          rm "${tasks_dir}/${file}"
+          notesSync
+          break
+        } ||
+        {
+          echo "bad choice"
+          break
+        }
+      done
+  fi
+
+## COPY content a task from a list
+elif [ "$1" = "copy" ] || [ "$1" = "c" ]; then
+  files=( $tasks_dir/*.md )
+
+  if ! [ "$2" = "" ]; then
+    index=($2-1)
+    copy_file=${files[$index]}
+    echo  "Copied content of $copy_file"
+    xclip -sel c < "$copy_file"
+  else
+    PS3="Copy file content #: "
+    echo "Select a task to COPY Content."
+    select file in "${files[@]##*/}"; do
+        {
+          echo  "Copied content of $file"
+          xclip -sel c < "${tasks_dir}/${file}"
+          break
+        } ||
+        {
+          echo "bad choice"
+          break
+        }
+      done
+  fi
+
+
+## CREATE a task (default)
 else
-  createTask
+  createtask
 fi
