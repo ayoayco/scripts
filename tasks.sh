@@ -59,9 +59,9 @@ function createtask() {
 ## LIST tasks in directory
 if [ "$1" = "list" ] || [ "$1" = "l" ]; then
   echo "ACTIVE TASKS: "
+  notesSync
   files=( $tasks_dir/*.md )
   index=0
-  notesSync
   for file in "${files[@]##*/}"; do
     ((index++))
     echo "$index) $file"
@@ -69,17 +69,16 @@ if [ "$1" = "list" ] || [ "$1" = "l" ]; then
 
 ## OPEN a task from a list
 elif [ "$1" = "open" ] || [ "$1" = "o" ]; then
+  notesSync
   files=( $tasks_dir/*.md )
 
   if ! [ "$2" = "" ]; then
     index=($2-1)
     open_file=${files[$index]}
     editFile "$open_file"
-    notesSync
   else
     PS3="Open file #: "
     echo "Please select a file to OPEN."
-    notesSync
     select file in "${files[@]##*/}"; do
         {
           echo "Opening $file"
@@ -95,12 +94,14 @@ elif [ "$1" = "open" ] || [ "$1" = "o" ]; then
 
 ## MARK AS DONE a task from a list
 elif [ "$1" = "done" ] || [ "$1" = "d" ]; then
-  files=( $tasks_dir/*.md )
   notesSync
+  files=( $tasks_dir/*.md )
 
   if ! [ "$2" = "" ]; then
     index=($2-1)
     done_file=${files[$index]}
+    read -p "Resolution: " resolution
+    echo $resolution >> "$done_file"
     mv "$done_file" "${tasks_dir}/done/"
     notesSync
   else
@@ -121,8 +122,8 @@ elif [ "$1" = "done" ] || [ "$1" = "d" ]; then
 
 ## REMOVE a task from a list
 elif [ "$1" = "remove" ] || [ "$1" = "rm" ]; then
-  files=( $tasks_dir/*.md )
   notesSync
+  files=( $tasks_dir/*.md )
 
   if ! [ "$2" = "" ]; then
     index=($2-1)

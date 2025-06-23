@@ -40,8 +40,7 @@ if [ "$1" = "append" ]; then
   {
     read -p "Add thought: " thought
     time=$(date +'%r')
-    echo $'\n'\> \[$time\]$'\n'\> $thought >> "$full_path"
-
+    echo $'\n'\> $thought \[$time\] >> "$full_path"
   } || {
     echo ">>> Append failed"
   }

@@ -55,12 +55,16 @@ function createNote() {
 }
 
 
+## SYNC notes in directory
+if [ "$1" = "sync" ] || [ "$1" = "s" ]; then
+  notesSync
+
 ## LIST notes in directory
-if [ "$1" = "list" ] || [ "$1" = "l" ]; then
+elif [ "$1" = "list" ] || [ "$1" = "l" ]; then
   echo "ACTIVE NOTES: "
+  notesSync
   files=( $notes_dir/*.md )
   index=0
-  notesSync
   for file in "${files[@]##*/}"; do
     ((index++))
     echo "$index) $file"
@@ -68,17 +72,16 @@ if [ "$1" = "list" ] || [ "$1" = "l" ]; then
 
 ## OPEN a note from a list
 elif [ "$1" = "open" ] || [ "$1" = "o" ]; then
+  notesSync
   files=( $notes_dir/*.md )
 
   if ! [ "$2" = "" ]; then
     index=($2-1)
     open_file=${files[$index]}
     editFile "$open_file"
-    notesSync
   else
     PS3="Open file #: "
     echo "Please select a file to OPEN."
-    notesSync
     select file in "${files[@]##*/}"; do
         {
           echo "Opening $file"
@@ -94,8 +97,8 @@ elif [ "$1" = "open" ] || [ "$1" = "o" ]; then
 
 ## REMOVE a note from a list
 elif [ "$1" = "remove" ] || [ "$1" = "rm" ]; then
-  files=( $notes_dir/*.md )
   notesSync
+  files=( $notes_dir/*.md )
 
   if ! [ "$2" = "" ]; then
     index=($2-1)
@@ -122,8 +125,8 @@ elif [ "$1" = "remove" ] || [ "$1" = "rm" ]; then
 
 ## ARCHIVE a note from a list
 elif [ "$1" = "archive" ] || [ "$1" = "a" ]; then
-  files=( $notes_dir/*.md )
   notesSync
+  files=( $notes_dir/*.md )
 
   if ! [ "$2" = "" ]; then
     index=($2-1)

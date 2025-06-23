@@ -23,6 +23,9 @@ case $1 in
   . ${HOME}/Projects/scripts/tasks.sh done $2 $3 $4 $5 $6 $7 $8 $9
   ;;
 
+  ns) # Notes sync
+    . ${HOME}/Projects/scripts/notes.sh sync
+    ;;
   nl) # Notes list
     . ${HOME}/Projects/scripts/notes.sh list $2 $3 $4 $5 $6 $7 $8 $9
     ;;
