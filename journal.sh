@@ -13,8 +13,6 @@ getopts "t" typora; #check if -t flag is given
 file_name=$(date +'%m.%d.%Y').md
 full_path="${journal_dir}/${month_dir}/${file_name}"
 
-notesSync
-
 if [ "$1" = "append" ]; then
   {
     read -p "Add thought: " thought
