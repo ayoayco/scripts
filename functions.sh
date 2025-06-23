@@ -1,3 +1,5 @@
+# NOTE: config should be loaded by the script using this shared functions.sh
+
 # Sync notes via git
 notesSync() {
   {

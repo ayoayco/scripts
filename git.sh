@@ -47,6 +47,6 @@ elif [ "$1" = "push" ]; then
   gitPush
 else
   gitStatus
-  gitCommit
+  gitCommit $2 $3 $4 $5 $6 $7 $8 $9
   gitPush
 fi

@@ -25,7 +25,10 @@ $ vim ~/ayo.conf
 1. journal - creates a new journal entry if it doesn’t exist yet; opens on editor
   1. append - append one thought at the end of the day's entry
 1. notes - notes management
-1. git - git tools
+1. git (g) - git tools; default behavior is gs, gc, then gp ...
+  1. stat (gs) - git status
+  2. commit (gc) - git commit (reads for message, accepts args as list of files to commit)
+  3. push (gp) - git push
 
 ## Features
 1. Autosync for notes & journal via git
