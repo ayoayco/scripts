@@ -1,7 +1,8 @@
 #! /usr/bin/bash
 
-# Load config
+# Load config & functions
 . ${HOME}/ayo.conf
+. functions.sh
 
 command=$1
 journal_dir="${notes_dir}/Journal"
@@ -13,22 +14,13 @@ file_name=$(date +'%m.%d.%Y').md
 full_path="${journal_dir}/${month_dir}/${file_name}"
 
 if [ "$1" = "sync" ]; then
-  {
-    path="${notes_dir}/"
-    cd "$path"
-    git pull
-    git add .
-    git commit -m "[script] update/add entrie/s"
-    git push
-  } || {
-    # Report; TODO: write log
-    echo ">>> Sync failed"
-  }
+  notesSync
 elif [ "$1" = "append" ]; then
   {
     read -p "Add thought: " thought
     time=$(date +'%r')
     echo $'\n'\[$time\] $thought$'\n' >> "$full_path"
+    notesSync
   } || {
     echo ">>> Append failed"
   }
@@ -48,6 +40,7 @@ else
     else
       vim "$full_path"
     fi
+    notesSync
   } || {
     # Report; TODO: write log
     echo ">>> " $full_path

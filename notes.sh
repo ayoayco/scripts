@@ -4,6 +4,7 @@
 
 # Load config
 . ${HOME}/ayo.conf
+. functions.sh
 
 # TODO: write log for echoes with >>>
 
@@ -12,16 +13,7 @@ command=$1
 getopts "t" typora; #check if -t flag is given
 
 if [ "$1" = "sync" ]; then
-  {
-    path="${notes_dir}/"
-    cd "$path"
-    git pull
-    git add .
-    git commit -m "[script] update/add entrie/s"
-    git push
-  } || {
-    echo ">>> Sync failed"
-  }
+  notesSync
 else
   {
     read -p "Enter file name: " title
@@ -44,6 +36,8 @@ else
     else
       vim "$full_path"
     fi
+
+    notesSync
   } || {
     echo ">>> New note failed"
   }
