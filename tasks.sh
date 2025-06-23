@@ -15,7 +15,7 @@ getopts "t" typora; #check if -t flag is given
 function listTasks() {
   files=( $tasks_dir/*.md )
   index=0
-  echo "ACTIVE TASKS: "
+  echo "TASKS: "
   for file in "${files[@]##*/}"; do
     ((index++))
     echo "$index) $file"
@@ -80,8 +80,8 @@ function createtask() {
 ## LIST tasks in directory
 if [ "$1" = "list" ] || [ "$1" = "l" ]; then
   notesSync
-  listTasks
   listProjects
+  listTasks
 
 ## OPEN a task from a list
 elif [ "$1" = "open" ] || [ "$1" = "o" ]; then
@@ -228,7 +228,7 @@ elif [ "$1" = "move" ] || [ "$1" = "m" ]; then
   fi
 
 ## CREATE a project
-elif [ "$1" = "project" ] || [ "$1" = "j" ]; then
+elif [ "$1" = "project" ] || [ "$1" = "p" ]; then
   read -p "Create new project: " project
   mkdir "$tasks_dir/$project"
 
