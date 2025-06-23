@@ -132,15 +132,15 @@ elif [ "$1" = "archive" ] || [ "$1" = "a" ]; then
     index=($2-1)
     archive_file=${files[$index]}
     echo  "Archiving $archive_file"
-    mv "$archive_file" "${notes_dir}/archive/"
+    mv "$archive_file" "${archive_dir}/"
     notesSync
   else
     PS3="Archive file #: "
-    echo "Move a note to ARCHIVE ($(ls ${notes_dir}/archive | wc -l))."
+    echo "Move a note to ARCHIVE ($(ls ${archive_dir} | wc -l))."
     select file in "${files[@]##*/}"; do
         {
           echo  "Archiving $file"
-          mv "${notes_dir}/${file}" "${notes_dir}/archive/"
+          mv "${notes_dir}/${file}" "${archive_dir}/"
           notesSync
           break
         } ||
