@@ -17,7 +17,7 @@ function createEntry() {
   {
     # IF Not Exists: create file & echo date
     if ! test -f "$full_path"; then
-      install -Dv /dev/null "$full_path"
+      install -Dv /dev/null "$full_path" >/dev/null
       # TODO: update to correct heading from old entries
       date_heading=$(date +'%b %d, %Y, %a %r')
       echo $date_heading > "$full_path"
