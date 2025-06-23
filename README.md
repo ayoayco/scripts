@@ -36,3 +36,7 @@ $ vim ~/ayo.conf
 ## Planned
 
 1. config - create configuration for variables (eg, editor, locations)
+
+---
+
+*Just keep building.*
