@@ -11,7 +11,6 @@
 command=$1
 
 getopts "t" typora; #check if -t flag is given
-echo ">>> typora? $typora"
 
 function editFile() {
   notesSync
@@ -81,7 +80,7 @@ elif [ "$1" = "open" ] || [ "$1" = "o" ]; then
 elif [ "$1" = "done" ] || [ "$1" = "d" ]; then
   files=( $tasks_dir/*.md )
   PS3="Mark as Done, file #: "
-  echo "Please select a file to MARK AS DONE."
+  echo "Mark a task as DONE ($(ls ${notes_dir}/tasks/done | wc -l))."
   notesSync
   select file in "${files[@]##*/}"; do
       {

@@ -126,7 +126,7 @@ elif [ "$1" = "archive" ] || [ "$1" = "a" ]; then
     notesSync
   else
     PS3="Archive file #: "
-    echo "Please select a file to ARCHIVE."
+    echo "Move a note to ARCHIVE ($(ls ${notes_dir}/archive | wc -l))."
     select file in "${files[@]##*/}"; do
         {
           echo  "Archiving $file"
