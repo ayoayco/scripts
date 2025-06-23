@@ -112,6 +112,36 @@ elif [ "$1" = "remove" ] || [ "$1" = "rm" ]; then
         }
       done
   fi
+
+## ARCHIVE a note from a list
+elif [ "$1" = "archive" ] || [ "$1" = "a" ]; then
+  files=( $notes_dir/*.md )
+  notesSync
+
+  if ! [ "$2" = "" ]; then
+    index=($2-1)
+    archive_file=${files[$index]}
+    echo  "Archiving $archive_file"
+    mv "$archive_file" "${notes_dir}/archive/"
+    notesSync
+  else
+    PS3="Archive file #: "
+    echo "Please select a file to ARCHIVE."
+    select file in "${files[@]##*/}"; do
+        {
+          echo  "Archiving $file"
+          mv "${notes_dir}/${file}" "${notes_dir}/archive/"
+          notesSync
+          break
+        } ||
+        {
+          echo "bad choice"
+          break
+        }
+      done
+  fi
+
+
 ## CREATE a note (default)
 else
   createNote
