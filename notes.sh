@@ -39,7 +39,7 @@ function createNote() {
 
     # IF Not Exists: create file & echo date
     if ! test -f "$full_path"; then
-      install -Dv /dev/null "$full_path"
+      install -Dv /dev/null "$full_path" >/dev/null
       # TODO: update to correct heading from old entries
       heading="# $title"
       echo $heading > "$full_path"
