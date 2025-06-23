@@ -147,6 +147,31 @@ elif [ "$1" = "archive" ] || [ "$1" = "a" ]; then
       done
   fi
 
+## COPY content a note from a list
+elif [ "$1" = "copy" ] || [ "$1" = "c" ]; then
+  files=( $notes_dir/*.md )
+
+  if ! [ "$2" = "" ]; then
+    index=($2-1)
+    copy_file=${files[$index]}
+    echo  "Copied content of $copy_file"
+    xclip -sel c < "$copy_file"
+  else
+    PS3="Copy file content #: "
+    echo "Select a note to COPY Content."
+    select file in "${files[@]##*/}"; do
+        {
+          echo  "Copied content of $file"
+          xclip -sel c < "${notes_dir}/${file}"
+          break
+        } ||
+        {
+          echo "bad choice"
+          break
+        }
+      done
+  fi
+
 
 ## CREATE a note (default)
 else
