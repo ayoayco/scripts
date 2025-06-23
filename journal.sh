@@ -9,6 +9,9 @@ month_dir=$(date +"%m %b")
 
 getopts "t" typora; #check if -t flag is given
 
+file_name=$(date +'%m.%d.%Y').md
+full_path="${journal_dir}/${month_dir}/${file_name}"
+
 if [ "$1" = "sync" ]; then
   {
     path="${notes_dir}/"
@@ -21,11 +24,16 @@ if [ "$1" = "sync" ]; then
     # Report; TODO: write log
     echo ">>> Sync failed"
   }
+elif [ "$1" = "append" ]; then
+  {
+    read -p "Add thought: " thought
+    time=$(date +'%r')
+    echo $'\n'\[$time\] $thought$'\n' >> "$full_path"
+  } || {
+    echo ">>> Append failed"
+  }
 else
   {
-    file_name=$(date +'%m.%d.%Y').md
-    full_path="${journal_dir}/${month_dir}/${file_name}"
-
     # IF Not Exists: create file & echo date
     if ! test -f "$full_path"; then
       install -Dv /dev/null "$full_path"

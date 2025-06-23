@@ -3,6 +3,9 @@
 case $1 in
   ## SHORTCUTS
 
+  ja) # js - journal append
+    . ${HOME}/Projects/scripts/journal.sh append $2 $3 $4 $5 $6 $7 $8 $9
+    ;;
   js) # js - journal sync
     . ${HOME}/Projects/scripts/journal.sh sync $2 $3 $4 $5 $6 $7 $8 $9
     ;;
