@@ -27,7 +27,7 @@ function editFile() {
 
 function createNote() {
   {
-    read -p "Enter file name: " title
+    read -p "Create new note: " title
     file_name=$title.md
     full_path="${notes_dir}/${file_name}"
 
@@ -51,6 +51,7 @@ function createNote() {
 if [ "$1" = "list" ] || [ "$1" = "l" ]; then
   files=( $notes_dir/*.md )
   index=0
+  notesSync
   for file in "${files[@]##*/}"; do
     ((index++))
     echo "$index) $file"
@@ -58,8 +59,9 @@ if [ "$1" = "list" ] || [ "$1" = "l" ]; then
 elif [ "$1" = "open" ] || [ "$1" = "o" ]; then
   files=( $notes_dir/*.md )
   PS3="Open file #: "
-  echo "Please select a file."
-  COLUMNS=0; select file in "${files[@]##*/}"; do
+  echo "Please select a file to OPEN."
+  notesSync
+  select file in "${files[@]##*/}"; do
       {
         echo "Opening $file"
         editFile "$file"
@@ -73,8 +75,9 @@ elif [ "$1" = "open" ] || [ "$1" = "o" ]; then
 elif [ "$1" = "remove" ] || [ "$1" = "rm" ]; then
   files=( $notes_dir/*.md )
   PS3="Remove file #: "
-  echo "Please select a file."
-  COLUMNS=0; select file in "${files[@]##*/}"; do
+  echo "Please select a file to REMOVE."
+  notesSync
+  select file in "${files[@]##*/}"; do
       {
         echo  "Removing $file"
         rm "${notes_dir}/${file}"
