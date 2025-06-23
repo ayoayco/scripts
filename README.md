@@ -39,4 +39,5 @@ $ vim ~/ayo.conf
 
 ---
 
-*Just keep building.*
+*Just keep scripting.*
+*A project by [Ayo](https://ayo.ayco.io)*
