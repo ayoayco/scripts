@@ -237,11 +237,26 @@ elif [ "$1" = "remove-project" ] || [ "$1" = "rp" ]; then
     remove_project=${dirs[$index]}
     echo  "Removing $remove_project"
     # move all project tasks to parent
-    mv "${tasks_dir}/${remove_project}"* "${tasks_dir}/"
+    mv "${tasks_dir}/${remove_project}"* "${tasks_dir}/" 2>/dev/null
     rm -rf "${tasks_dir}/${remove_project}"
     notesSync
   else
-    echo ""
+    PS3="Remove Project #: "
+    echo "Select a Project to DELETE."
+    select dir in "${dirs[@]}"; do
+        {
+          echo  "Removing $dir"
+          # move all project tasks to parent
+          mv "${tasks_dir}/${dir}"* "${tasks_dir}/" 2>/dev/null
+          rm -rf "${tasks_dir}/${dir}"
+          notesSync
+          break
+        } ||
+        {
+          echo "bad choice"
+          break
+        }
+      done
   fi
 
 ## CREATE a project
