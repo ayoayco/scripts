@@ -1,11 +1,13 @@
 #! /usr/bin/bash
 
+## notes management
+
 # Load config
 . ${HOME}/ayo.conf
 
+# TODO: write log for echoes with >>>
+
 command=$1
-journal_dir="${notes_dir}/Journal"
-month_dir=$(date +"%m %b")
 
 getopts "t" typora; #check if -t flag is given
 
@@ -18,20 +20,22 @@ if [ "$1" = "sync" ]; then
     git commit -m "[script] update/add entrie/s"
     git push
   } || {
-    # Report; TODO: write log
     echo ">>> Sync failed"
   }
 else
   {
-    file_name=$(date +'%m.%d.%Y').md
-    full_path="${journal_dir}/${month_dir}/${file_name}"
+    read -p "Enter file name: " title
+    file_name=$title.md
+    full_path="${notes_dir}/${file_name}"
 
     # IF Not Exists: create file & echo date
     if ! test -f "$full_path"; then
       install -Dv /dev/null "$full_path"
       # TODO: update to correct heading from old entries
+      heading="# $title"
+      echo $heading > "$full_path"
       date_heading=$(date +'%b %d, %Y, %a %r')
-      echo $date_heading > "$full_path"
+      echo $date_heading >> "$full_path"
     fi
 
     # Open in editor
@@ -41,7 +45,6 @@ else
       vim "$full_path"
     fi
   } || {
-    # Report; TODO: write log
-    echo ">>> " $full_path
+    echo ">>> New note failed"
   }
 fi
