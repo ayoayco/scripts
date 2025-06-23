@@ -57,6 +57,7 @@ function createtask() {
 
 ## LIST tasks in directory
 if [ "$1" = "list" ] || [ "$1" = "l" ]; then
+  echo "ACTIVE TASKS: "
   files=( $tasks_dir/*.md )
   index=0
   notesSync

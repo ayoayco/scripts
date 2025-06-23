@@ -57,6 +57,7 @@ function createNote() {
 
 ## LIST notes in directory
 if [ "$1" = "list" ] || [ "$1" = "l" ]; then
+  echo "ACTIVE NOTES: "
   files=( $notes_dir/*.md )
   index=0
   notesSync
