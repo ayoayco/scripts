@@ -6,12 +6,6 @@ case $1 in
   ja) # journal append
     . ${HOME}/Projects/scripts/journal.sh append $2 $3 $4 $5 $6 $7 $8 $9
     ;;
-  js) # journal sync (same as ns)
-    . ${HOME}/Projects/scripts/journal.sh sync $2 $3 $4 $5 $6 $7 $8 $9
-    ;;
-  ns) # notes sync
-    . ${HOME}/Projects/scripts/notes.sh sync $2 $3 $4 $5 $6 $7 $8 $9
-    ;;
   gs) # git status
     . ${HOME}/Projects/scripts/git.sh stat $2 $3 $4 $5 $6 $7 $8 $9
     ;;
