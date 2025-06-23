@@ -19,7 +19,7 @@ elif [ "$1" = "append" ]; then
   {
     read -p "Add thought: " thought
     time=$(date +'%r')
-    echo $'\n'\> \[$time\]$'\n'\> $thought$'\n' >> "$full_path"
+    echo $'\n'\> \[$time\]$'\n'\> $thought >> "$full_path"
     notesSync
   } || {
     echo ">>> Append failed"
