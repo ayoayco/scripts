@@ -1,3 +1,4 @@
+# Sync notes via git
 notesSync() {
   {
     path="${notes_dir}/"

@@ -22,9 +22,14 @@ $ vim ~/ayo.conf
 ## Scripts
 
 1. ayo - parent command, lists all available scripts or accepts parameters
-2. journal - creates a new journal entry if it doesn’t exist yet; opens on editor
+1. journal - creates a new journal entry if it doesn’t exist yet; opens on editor
+  1. append - append one thought at the end of the day's entry
+1. notes - notes management
+1. git - git tools
+
+## Features
+1. Autosync for notes & journal via git
 
 ## Planned
 
 1. config - create configuration for variables (eg, editor, locations)
-2. journal sync - sync journal entries
