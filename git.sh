@@ -21,9 +21,10 @@ gitStatus() {
 
 gitCommit() {
   {
+    echo "gitCommit called"
     git add .
     read -p "Message: " message
-    git commit -m "$message" $2 $3 $4 $5 $6 $7 $8 $9
+    git commit -m "$message" $*
   }|| {
     # Report; TODO: write log
     echo ">>> Commit failed"
@@ -47,6 +48,9 @@ elif [ "$1" = "push" ]; then
   gitPush
 else
   gitStatus
-  gitCommit $2 $3 $4 $5 $6 $7 $8 $9
+  if ! [ "$1" = "g" ]; then
+    gitCommit $*
+  fi
+  gitCommit
   gitPush
 fi
