@@ -12,6 +12,12 @@ case $1 in
   gs) # js - journal sync
     . ${HOME}/Projects/scripts/git.sh stat $2 $3 $4 $5 $6 $7 $8 $9
     ;;
+  gc) # js - journal sync
+    . ${HOME}/Projects/scripts/git.sh commit $2 $3 $4 $5 $6 $7 $8 $9
+    ;;
+  gp) # js - journal sync
+    . ${HOME}/Projects/scripts/git.sh push $2 $3 $4 $5 $6 $7 $8 $9
+    ;;
 
   ## SCRIPTS
 

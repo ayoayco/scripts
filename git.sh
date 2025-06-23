@@ -21,10 +21,19 @@ if [ "$1" = "stat" ]; then
   }
 elif [ "$1" = "commit" ]; then
   {
+    git add .
+    git status
     git commit -m "$2"
   } || {
     # Report; TODO: write log
-    echo ">>> Stat failed"
+    echo ">>> Commit failed"
+  }
+elif [ "$1" = "push" ]; then
+  {
+    git push
+  } || {
+    # Report; TODO: write log
+    echo ">>> Push failed"
   }
 else
   echo "git tools"
