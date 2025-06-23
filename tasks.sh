@@ -102,14 +102,14 @@ elif [ "$1" = "done" ] || [ "$1" = "d" ]; then
     done_file=${files[$index]}
     read -p "Resolution: " resolution
     echo $resolution >> "$done_file"
-    mv "$done_file" "${tasks_dir}/done/"
+    mv "$done_file" "${tasks_dir}/.done/"
     notesSync
   else
     PS3="Mark as Done, file #: "
-    echo "Mark a task as DONE ($(ls ${tasks_dir}/done/ | wc -l))."
+    echo "Mark a task as DONE ($(ls ${tasks_dir}/.done/ | wc -l))."
     select file in "${files[@]##*/}"; do
         {
-          mv "${tasks_dir}/${file}" "${tasks_dir}/done/"
+          mv "${tasks_dir}/${file}" "${tasks_dir}/.done/"
           notesSync
           break
         } ||
@@ -173,8 +173,18 @@ elif [ "$1" = "copy" ] || [ "$1" = "c" ]; then
       done
   fi
 
+## CREATE PROJECT
+elif [ "$1" = "project" ] || [ "$1" = "j" ]; then
+  read -p "Create new project: " project
+  mkdir "$tasks_dir/$project"
 
 ## CREATE a task (default)
 else
+  index=0
+  for dir in "$(cd $tasks_dir && ls -d -- */)"; do
+    ((index++))
+    echo "$index) $dir"
+  done
+
   createtask
 fi
