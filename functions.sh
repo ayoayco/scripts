@@ -2,7 +2,6 @@
 
 # Sync notes via git
 notesSync() {
-
   # check if online
   test="git.sr.ht"
   if timeout 0.5 ping -q -c 1 -W 1 $test >/dev/null; then

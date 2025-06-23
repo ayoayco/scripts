@@ -45,9 +45,10 @@ function createtask() {
       echo $heading > "$full_path"
       date_heading=$(date +'%b %d, %Y, %a %r')
       echo $date_heading >> "$full_path"
+    else
+      editFile "$full_path"
     fi
 
-    editFile "$full_path"
 
   } || {
     echo ">>> New task failed"
@@ -82,7 +83,7 @@ elif [ "$1" = "open" ] || [ "$1" = "o" ]; then
     select file in "${files[@]##*/}"; do
         {
           echo "Opening $file"
-          editFile "$file"
+          editFile "${tasks_dir}/$file"
           break
         } ||
         {
