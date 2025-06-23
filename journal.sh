@@ -13,14 +13,13 @@ getopts "t" typora; #check if -t flag is given
 file_name=$(date +'%m.%d.%Y').md
 full_path="${journal_dir}/${month_dir}/${file_name}"
 
-if [ "$1" = "sync" ]; then
-  notesSync
-elif [ "$1" = "append" ]; then
+notesSync
+
+if [ "$1" = "append" ]; then
   {
     read -p "Add thought: " thought
     time=$(date +'%r')
     echo $'\n'\> \[$time\]$'\n'\> $thought >> "$full_path"
-    notesSync
   } || {
     echo ">>> Append failed"
   }
@@ -40,9 +39,10 @@ else
     else
       vim "$full_path"
     fi
-    notesSync
   } || {
     # Report; TODO: write log
     echo ">>> " $full_path
   }
 fi
+
+notesSync
