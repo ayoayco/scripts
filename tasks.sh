@@ -29,6 +29,12 @@ function editFile() {
 function createTask() {
   {
     read -p "Create new task: " title
+
+    if [ "$title" = "" ]; then
+      echo "Title cannot be empty."
+      exit;
+    fi;
+
     file_name=$title.md
     full_path="${tasks_dir}/${file_name}"
 

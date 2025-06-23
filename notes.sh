@@ -28,6 +28,12 @@ function editFile() {
 function createNote() {
   {
     read -p "Create new note: " title
+
+    if [ "$title" = "" ]; then
+      echo "Title cannot be empty."
+      exit;
+    fi;
+
     file_name=$title.md
     full_path="${notes_dir}/${file_name}"
 
