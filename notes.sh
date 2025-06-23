@@ -48,6 +48,8 @@ function createNote() {
   }
 }
 
+
+## LIST notes in directory
 if [ "$1" = "list" ] || [ "$1" = "l" ]; then
   files=( $notes_dir/*.md )
   index=0
@@ -56,39 +58,61 @@ if [ "$1" = "list" ] || [ "$1" = "l" ]; then
     ((index++))
     echo "$index) $file"
   done
+
+## OPEN a note from a list
 elif [ "$1" = "open" ] || [ "$1" = "o" ]; then
   files=( $notes_dir/*.md )
-  PS3="Open file #: "
-  echo "Please select a file to OPEN."
-  notesSync
-  select file in "${files[@]##*/}"; do
-      {
-        echo "Opening $file"
-        editFile "$file"
-        break
-      } ||
-      {
-        echo "bad choice"
-        break
-      }
-    done
+
+  if ! [ "$2" = "" ]; then
+    index=($2-1)
+    open_file=${files[$index]}
+    editFile "$open_file"
+    notesSync
+  else
+    PS3="Open file #: "
+    echo "Please select a file to OPEN."
+    notesSync
+    select file in "${files[@]##*/}"; do
+        {
+          echo "Opening $file"
+          editFile "$file"
+          break
+        } ||
+        {
+          echo "bad choice"
+          break
+        }
+      done
+  fi
+
+## REMOVE a note from a list
 elif [ "$1" = "remove" ] || [ "$1" = "rm" ]; then
   files=( $notes_dir/*.md )
-  PS3="Remove file #: "
-  echo "Please select a file to REMOVE."
   notesSync
-  select file in "${files[@]##*/}"; do
-      {
-        echo  "Removing $file"
-        rm "${notes_dir}/${file}"
-        notesSync
-        break
-      } ||
-      {
-        echo "bad choice"
-        break
-      }
-    done
+
+  if ! [ "$2" = "" ]; then
+    index=($2-1)
+    remove_file=${files[$index]}
+    echo  "Removing $remove_file"
+    rm "$remove_file"
+    notesSync
+  else
+    PS3="Remove file #: "
+    echo "Please select a file to REMOVE."
+    select file in "${files[@]##*/}"; do
+        {
+          echo  "Removing $file"
+          rm "${notes_dir}/${file}"
+          notesSync
+          break
+        } ||
+        {
+          echo "bad choice"
+          break
+        }
+      done
+  fi
+## CREATE a note (default)
 else
   createNote
 fi

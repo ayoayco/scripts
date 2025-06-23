@@ -10,6 +10,19 @@ case $1 in
     . ${HOME}/Projects/scripts/journal.sh -t $2 $3 $4 $5 $6 $7 $8 $9
     ;;
 
+  tl) # Tasks list
+  . ${HOME}/Projects/scripts/tasks.sh list $2 $3 $4 $5 $6 $7 $8 $9
+  ;;
+  to) # Tasks open
+  . ${HOME}/Projects/scripts/tasks.sh open $2 $3 $4 $5 $6 $7 $8 $9
+  ;;
+  tr) # Tasks remove
+  . ${HOME}/Projects/scripts/tasks.sh remove $2 $3 $4 $5 $6 $7 $8 $9
+  ;;
+  td) # Tasks mark as done
+  . ${HOME}/Projects/scripts/tasks.sh done $2 $3 $4 $5 $6 $7 $8 $9
+  ;;
+
   nl) # Notes list
     . ${HOME}/Projects/scripts/notes.sh list $2 $3 $4 $5 $6 $7 $8 $9
     ;;
@@ -38,6 +51,9 @@ case $1 in
   n | notes)
     . ${HOME}/Projects/scripts/notes.sh $2 $3 $4 $5 $6 $7 $8 $9
     ;;
+  t | tasks)
+    . ${HOME}/Projects/scripts/tasks.sh $2 $3 $4 $5 $6 $7 $8 $9
+    ;;
   j | journal)
     . ${HOME}/Projects/scripts/journal.sh $2 $3 $4 $5 $6 $7 $8 $9
     ;;
@@ -45,9 +61,9 @@ case $1 in
     echo 'Config script in-progress'
     ;;
   m | mac)
-    quickemu --vm macos-monterey.conf --width 1920 --height 1080
+    quickemu --vm ${HOME}/macos-monterey.conf --width 1920 --height 1080
     ;;
   ms)
-    quickemu --vm macos-monterey.conf --kill
+    quickemu --vm ${HOME}/macos-monterey.conf --kill
     ;;
 esac
