@@ -9,9 +9,15 @@ case $1 in
   ns) # js - journal sync
     . ${HOME}/Projects/scripts/notes.sh sync $2 $3 $4 $5 $6 $7 $8 $9
     ;;
+  gs) # js - journal sync
+    . ${HOME}/Projects/scripts/git.sh stat $2 $3 $4 $5 $6 $7 $8 $9
+    ;;
 
   ## SCRIPTS
 
+  g | git)
+    . ${HOME}/Projects/scripts/git.sh $2 $3 $4 $5 $6 $7 $8 $9
+    ;;
   n | notes)
     . ${HOME}/Projects/scripts/notes.sh $2 $3 $4 $5 $6 $7 $8 $9
     ;;
