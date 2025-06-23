@@ -7,7 +7,7 @@ notesSync() {
     cd "$path"
     git pull --quiet
     git add .
-    git commit -m "[script] update/add entrie/s" --quiet
+    git commit -m "[bash script] update/add entries" >> /dev/null
     git push --quiet
   } || {
     # Report; TODO: write log
