@@ -40,6 +40,7 @@ gitPush() {
 }
 
 if [ "$1" = "diff" ] || [ "$1" = "d" ]; then
+  git add .
   git diff --staged
 elif [ "$1" = "stat" ]; then
   gitStatus

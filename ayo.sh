@@ -45,6 +45,9 @@ case $1 in
     . ${HOME}/Projects/scripts/notes.sh -t $2 $3 $4 $5 $6 $7 $8 $9
     ;;
 
+  gd) # git diff
+    . ${HOME}/Projects/scripts/git.sh diff $2 $3 $4 $5 $6 $7 $8 $9
+    ;;
   gs) # git status
     . ${HOME}/Projects/scripts/git.sh stat $2 $3 $4 $5 $6 $7 $8 $9
     ;;
