@@ -227,6 +227,23 @@ elif [ "$1" = "move" ] || [ "$1" = "m" ]; then
       done
   fi
 
+## REMOVE a project
+elif [ "$1" = "remove-project" ] || [ "$1" = "rp" ]; then
+  cd "$tasks_dir"
+  dirs=( */ )
+
+  if ! [ "$2" = "" ]; then
+    index=($2-1)
+    remove_project=${dirs[$index]}
+    echo  "Removing $remove_project"
+    # move all project tasks to parent
+    mv "${tasks_dir}/${remove_project}"* "${tasks_dir}/"
+    rm -rf "${tasks_dir}/${remove_project}"
+    notesSync
+  else
+    echo ""
+  fi
+
 ## CREATE a project
 elif [ "$1" = "project" ] || [ "$1" = "p" ]; then
   read -p "Create new project: " project
