@@ -4,7 +4,7 @@
 
 # Load config
 . ${HOME}/ayo.conf
-. functions.sh
+. ${scripts_dir}/functions.sh
 
 # TODO: write log for echoes with >>>
 

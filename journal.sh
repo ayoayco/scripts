@@ -2,7 +2,7 @@
 
 # Load config & functions
 . ${HOME}/ayo.conf
-. functions.sh
+. ${scripts_dir}/functions.sh
 
 command=$1
 journal_dir="${notes_dir}/Journal"
@@ -19,7 +19,7 @@ elif [ "$1" = "append" ]; then
   {
     read -p "Add thought: " thought
     time=$(date +'%r')
-    echo $'\n'\[$time\] $thought$'\n' >> "$full_path"
+    echo $'\n'\> \[$time\]$'\n'\> $thought$'\n' >> "$full_path"
     notesSync
   } || {
     echo ">>> Append failed"
