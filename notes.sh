@@ -12,6 +12,7 @@ command=$1
 
 getopts "t" typora; #check if -t flag is given
 
+notesSync
 {
   read -p "Enter file name: " title
   file_name=$title.md
@@ -37,5 +38,4 @@ getopts "t" typora; #check if -t flag is given
 } || {
   echo ">>> New note failed"
 }
-
 notesSync
