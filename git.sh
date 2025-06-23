@@ -9,8 +9,6 @@ command=$1
 journal_dir="${notes_dir}/Journal"
 month_dir=$(date +"%m %b")
 
-getopts "t" typora; #check if -t flag is given
-
 if [ "$1" = "stat" ]; then
   {
     git add .
@@ -22,9 +20,9 @@ if [ "$1" = "stat" ]; then
 elif [ "$1" = "commit" ]; then
   {
     git add .
-    git status
-    git commit -m "$2"
-  } || {
+    read -p "Message: " message
+    git commit -m "$message" $2 $3 $4 $5 $6 $7 $8 $9
+  }|| {
     # Report; TODO: write log
     echo ">>> Commit failed"
   }
