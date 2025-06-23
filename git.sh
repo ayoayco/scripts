@@ -9,7 +9,7 @@ command=$1
 journal_dir="${notes_dir}/Journal"
 month_dir=$(date +"%m %b")
 
-if [ "$1" = "stat" ]; then
+gitStatus() {
   {
     git add .
     git status
@@ -17,7 +17,9 @@ if [ "$1" = "stat" ]; then
     # Report; TODO: write log
     echo ">>> Stat failed"
   }
-elif [ "$1" = "commit" ]; then
+}
+
+gitCommit() {
   {
     git add .
     read -p "Message: " message
@@ -26,13 +28,25 @@ elif [ "$1" = "commit" ]; then
     # Report; TODO: write log
     echo ">>> Commit failed"
   }
-elif [ "$1" = "push" ]; then
+}
+
+gitPush() {
   {
     git push
   } || {
     # Report; TODO: write log
     echo ">>> Push failed"
   }
+}
+
+if [ "$1" = "stat" ]; then
+  gitStatus
+elif [ "$1" = "commit" ]; then
+  gitCommit
+elif [ "$1" = "push" ]; then
+  gitPush
 else
-  echo "git tools"
+  gitStatus
+  gitCommit
+  gitPush
 fi
