@@ -7,7 +7,6 @@ command=$1
 journal_dir="${notes_dir}/Journal"
 month_dir=$(date +"%m %b")
 
-
 if [ "$1" = "sync" ]; then
   {
     path="${notes_dir}/"
