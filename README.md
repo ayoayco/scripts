@@ -34,6 +34,7 @@ $ vim ~/ayo.conf
 
 ## Planned
 
+1. blog - tools for blogging (eg, bn - generate blog from a note)
 1. config - create configuration for variables (eg, editor, locations)
 
 ---
