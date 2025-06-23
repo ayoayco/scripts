@@ -21,7 +21,6 @@ gitStatus() {
 
 gitCommit() {
   {
-    echo "gitCommit called"
     git add .
     read -p "Message: " message
     git commit -m "$message" $*
@@ -42,15 +41,20 @@ gitPush() {
 
 if [ "$1" = "stat" ]; then
   gitStatus
-elif [ "$1" = "commit" ]; then
-  gitCommit
 elif [ "$1" = "push" ]; then
   gitPush
 else
-  gitStatus
-  if ! [ "$1" = "g" ]; then
+  echo ">>> $1"
+  if [ "$1" = "g" ] || [ "$1" = "git" ]; then
+    git reset HEAD -- .
+    git add .
+    git status
+    gitCommit
+  else
+    git reset HEAD -- .
+    git add $*
+    git status
     gitCommit $*
   fi
-  gitCommit
   gitPush
 fi

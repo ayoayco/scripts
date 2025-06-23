@@ -3,22 +3,19 @@
 case $1 in
   ## SHORTCUTS
 
-  ja) # js - journal append
+  ja) # journal append
     . ${HOME}/Projects/scripts/journal.sh append $2 $3 $4 $5 $6 $7 $8 $9
     ;;
-  js) # js - journal sync
+  js) # journal sync (same as ns)
     . ${HOME}/Projects/scripts/journal.sh sync $2 $3 $4 $5 $6 $7 $8 $9
     ;;
-  ns) # js - journal sync
+  ns) # notes sync
     . ${HOME}/Projects/scripts/notes.sh sync $2 $3 $4 $5 $6 $7 $8 $9
     ;;
-  gs) # js - journal sync
+  gs) # git status
     . ${HOME}/Projects/scripts/git.sh stat $2 $3 $4 $5 $6 $7 $8 $9
     ;;
-  gc) # js - journal sync
-    . ${HOME}/Projects/scripts/git.sh commit $2 $3 $4 $5 $6 $7 $8 $9
-    ;;
-  gp) # js - journal sync
+  gp) # git push
     . ${HOME}/Projects/scripts/git.sh push $2 $3 $4 $5 $6 $7 $8 $9
     ;;
 
