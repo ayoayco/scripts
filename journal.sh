@@ -41,9 +41,16 @@ if [ "$1" = "append" ]; then
     read -p "Add thought: " thought
     time=$(date +'%r')
     echo $'\n'\> $thought \[$time\] >> "$full_path"
+    clear
   } || {
     echo ">>> Append failed"
   }
+
+## COPY content a note from a list
+elif [ "$1" = "copy" ] || [ "$1" = "c" ]; then
+  echo  "Copied content of $full_path"
+  xclip -sel c < "$full_path"
+
 else
   createEntry
 fi
