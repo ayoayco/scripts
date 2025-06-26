@@ -51,6 +51,7 @@ elif [ "$1" = "copy" ] || [ "$1" = "c" ]; then
   echo  "Copied content of $full_path"
   xclip -sel c < "$full_path"
 
+## New entry or edit
 else
   createEntry
 fi
