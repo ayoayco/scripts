@@ -22,6 +22,7 @@ function editFile() {
     vim "$1"
   fi
 
+  clear
   notesSync
 }
 

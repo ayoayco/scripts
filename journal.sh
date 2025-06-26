@@ -54,5 +54,6 @@ elif [ "$1" = "copy" ] || [ "$1" = "c" ]; then
 ## New entry or edit
 else
   createEntry
+  clear
 fi
 notesSync
