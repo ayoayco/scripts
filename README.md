@@ -16,8 +16,24 @@ $ vim ~/ayo.conf
 
 3\. update your .bashrc to add an alias for the parent command `scripts/ayo.sh`
 
-## Dependencies
-1. Typora - used as default editor for notes
+## Set up
+
+1\. Clone repo
+``` bash
+# By default this should be inside ~/Projects/ directory
+# otherwise, you have to update the config in the next step
+$ git clone git@git.sr.ht:~ayoayco/scripts
+$ cd scripts
+```
+
+2\. Copy config (and update values as needed!)
+``` bash
+$ cp example.conf ~/ayo.conf
+```
+
+3\. Install some dependencies
+1. [Typora](https://typora.io) - used as an alternative editor for notes (using flag `-t`)
+1. `timeout` - install on mac via coreutils: `brew install coreutils`
 
 ## Scripts
 
