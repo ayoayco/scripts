@@ -56,8 +56,13 @@ function createNote() {
 }
 
 
+## DIFF
+if [ "$1" = "diff" ] || [ "$1" = "d" ]; then
+  cd $notes_dir
+  git add .
+  git diff --staged .
 ## SYNC notes in directory
-if [ "$1" = "sync" ] || [ "$1" = "s" ]; then
+elif [ "$1" = "sync" ] || [ "$1" = "s" ]; then
   notesSync
 
 ## LIST notes in directory

@@ -1,5 +1,4 @@
-#! /usr/bin/bash
-
+#! /usr/bin/env bash
 
 # Load config
 . ${HOME}/ayo.conf
@@ -30,6 +29,9 @@ case $1 in
   . ${scripts_dir}/tasks.sh done $2 $3 $4 $5 $6 $7 $8 $9
   ;;
 
+  nd) # Notes diff
+    . ${scripts_dir}/notes.sh diff
+    ;;
   ns) # Notes sync
     . ${scripts_dir}/notes.sh sync
     ;;
