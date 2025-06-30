@@ -66,6 +66,9 @@ case $1 in
 
   ## SCRIPTS
 
+  d | display)
+    . ${scripts_dir}/display.sh $2 $3 $4 $5 $6 $7 $8 $9
+    ;;
   u | up)
     . ${scripts_dir}/up.sh $2 $3 $4 $5 $6 $7 $8 $9
     ;;

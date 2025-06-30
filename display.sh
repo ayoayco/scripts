@@ -1,4 +1,12 @@
+#! /usr/bin/bash
+
 # laptop display management
+
+# Load config & functions
+#. ${HOME}/ayo.conf
+#. ${scripts_dir}/functions.sh
+
+#command=$1
 
 if [ "$1" = "1920" ] || [ "$1" = "1200" ]; then
   xrandr --output eDP-1 --mode 1920x1200
