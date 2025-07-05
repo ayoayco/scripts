@@ -66,6 +66,9 @@ case $1 in
 
   ## SCRIPTS
 
+  m | mail)
+    . ${scripts_dir}/mail.sh $2 $3 $4 $5 $6 $7 $8 $9
+    ;;
   d | display)
     . ${scripts_dir}/display.sh $2 $3 $4 $5 $6 $7 $8 $9
     ;;
@@ -87,7 +90,7 @@ case $1 in
   c | config)
     echo 'Config script in-progress'
     ;;
-  m | mac)
+  vm | mac)
     quickemu --vm ${HOME}/macos-monterey.conf --width 1920 --height 1080
     ;;
   ms)
