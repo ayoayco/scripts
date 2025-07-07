@@ -12,7 +12,7 @@ command=$1
 
 if [ "$1" = "task" ] || [ "$1" = "t" ]; then
   read -p "Task:" task
-  mutt -s task things
+  mutt -s "$task" things
 else
   mutt $1 $2 $3 $4 $5
 fi

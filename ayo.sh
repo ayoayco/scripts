@@ -64,6 +64,10 @@ case $1 in
     . ${scripts_dir}/git.sh push $2 $3 $4 $5 $6 $7 $8 $9
     ;;
 
+  mt) # mail task
+    . ${scripts_dir}/mail.sh task
+    ;;
+
   ## SCRIPTS
 
   m | mail)
