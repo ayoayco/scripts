@@ -1,5 +1,8 @@
 # NOTE: config should be loaded by the script using this shared functions.sh
 
+bold=$(tput bold)
+dlob=$(tput sgr0)
+
 # Sync notes via git
 notesSync() {
   # check if online

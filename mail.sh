@@ -14,5 +14,5 @@ if [ "$1" = "task" ] || [ "$1" = "t" ]; then
   read -p "Task:" task
   mutt -s "$task" things
 else
-  mutt $1 $2 $3 $4 $5
+  echo "Use ${bold}mail task${dlob} or ${bold}mt${dlob} to send a task to Things. Otherwise, use ${bold}mutt${dlob} for mail"
 fi
