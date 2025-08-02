@@ -69,7 +69,11 @@ elif [ "$1" = "sync" ] || [ "$1" = "s" ]; then
 elif [ "$1" = "list" ] || [ "$1" = "l" ]; then
   echo "ACTIVE NOTES: "
   notesSync
-  files=( $notes_dir/*.md )
+  if ! [ "$2" = "" ]; then
+    files=( $notes_dir/$2/*.md )
+  else
+    files=( $notes_dir/*.md )
+  fi
   index=0
   for file in "${files[@]##*/}"; do
     ((index++))
