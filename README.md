@@ -34,6 +34,7 @@ $ cp example.conf ~/ayo.conf
 3\. Install some dependencies
 1. [Typora](https://typora.io) - used as an alternative editor for notes (using flag `-t`)
 1. `timeout` - install on mac via coreutils: `brew install coreutils`
+1. `ollama` - running a locall LLM via ollama. See [installation on linux](https://ollama.com/download/linux)
 
 ## Scripts
 

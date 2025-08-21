@@ -70,6 +70,9 @@ case $1 in
 
   ## SCRIPTS
 
+  ai)
+    . ${scripts_dir}/ai.sh $2 $3 $4 $5 $6 $7 $8 $9
+    ;;
   m | mail)
     . ${scripts_dir}/mail.sh $2 $3 $4 $5 $6 $7 $8 $9
     ;;
