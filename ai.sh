@@ -6,5 +6,5 @@ You are an expert virtual assistant fluent in English. Act as a smart and profes
 if ! [ "$2" = "" ]; then
   ollama run deepseek-r1:8b "$prompt... beginning prompt... $@" --hidethinking
 else
-  ollama run deepseek-r1:8b
+  ollama run deepseek-r1:8b --hidethinking
 fi
