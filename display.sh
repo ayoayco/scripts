@@ -34,18 +34,17 @@ function main() {
       xrandr --output "$extern" --off --output "$intern" --auto
       ;;
     *)
+      echo "Setting display to small mode (1680x1050)"
       xrandr --output "$intern" --output "$intern" --mode 1680x1050
       ;;
   esac
   return 0
 }
 
+start_time=$(date +%s%N)
 main
-
-#start_time=$(date +%s%N)
-#main
-#end_time=$(date +%s%N)
-#duration=$((end_time - start_time))
-#duration_ms=$(echo "scale=3; $duration / 1000000" | bc)
-#duration_s=$(echo "scale=3; $duration_ms / 1000" | bc)
-#echo "Took $duration_s s"
+end_time=$(date +%s%N)
+duration=$((end_time - start_time))
+duration_ms=$(echo "scale=3; $duration / 1000000" | bc)
+duration_s=$(echo "scale=3; $duration_ms / 1000" | bc)
+echo "Took $duration_s s"
