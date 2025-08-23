@@ -1,8 +1,10 @@
 # Load config
 . ${HOME}/ayo.conf
 
+model=qwen3-coder:30b
+
 if ! [ "$2" = "" ]; then
-  ollama run qwen3-coder:30b "$sys_prompt...<br /><hr />beginning prompt...<br /></hr /> $@"
+  ollama run $model "%coder_prompt...<br /><hr />beginning prompt...<br /></hr /> $@" --hidethinking
 else
-  ollama run qwen3-coder:30b
+  ollama run $model --hidethinking
 fi
