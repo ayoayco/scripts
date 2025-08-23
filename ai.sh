@@ -1,10 +1,15 @@
-prompt="""
-## ROLE:
-You are an expert virtual assistant fluent in English. Act as a smart and professional. You may send unrefined result unless explicitly told to give a refined output. You may ask further questions. Let me know if the instructions are not clear.
-"""
+# Load config
+. ${HOME}/ayo.conf
 
 if ! [ "$2" = "" ]; then
-  ollama run deepseek-r1:8b "$prompt... beginning prompt... $@" --hidethinking
+  if [ "$2" = "wake" ]; then
+    . $HOME/llm_env/bin/activate
+    . $HOME/llama-cpp/env.conf
+    . $HOME/intel/oneapi/setvars.sh
+    $HOME/llama-cpp/ollama serve
+  else
+    ollama run deepseek-r1:8b "$sys_prompt...<br /><hr />beginning prompt...<br /></hr /> $@" --hidethinking
+  fi
 else
   ollama run deepseek-r1:8b --hidethinking
 fi
