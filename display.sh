@@ -18,7 +18,7 @@ elif [ $command = "small" ] || [ "$command" = "1280" ] || [ "$command" = "800" ]
 elif [ $command = "solo" ]; then
   xrandr --output "$extern" --off --output "$intern" --auto
 elif [ $command = "dual" ]; then
-  xrandr --output "$extern" --mode 1680x1050 --right-of "$intern"
+  xrandr --output "$extern" --primary --auto --left-of "$intern" --output "$intern" --mode 1680x1050
 else
   xrandr --output "$intern" --mode 1680x1050
 fi
