@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#!/usr/bin/bash
 
 # laptop display management
 
@@ -11,14 +11,41 @@ extern=DP-1
 
 command=$2
 
-if [ $command = "big" ] || [ "$command" = "1920" ] || [ "$command" = "1200" ]; then
-  xrandr --output "$intern" --mode 1920x1200
-elif [ $command = "small" ] || [ "$command" = "1280" ] || [ "$command" = "800" ]; then
-  xrandr --output "$intern" --mode 1280x800
-elif [ $command = "solo" ]; then
-  xrandr --output "$extern" --off --output "$intern" --auto
-elif [ $command = "dual" ]; then
-  xrandr --output "$extern" --primary --auto --left-of "$intern" --output "$intern" --mode 1680x1050
-else
-  xrandr --output "$intern" --mode 1680x1050
-fi
+function main() {
+  case $command in
+    "big")
+      echo "Setting display to big mode (1920x1200)"
+      xrandr --output "$intern" --mode 1920x1200
+      ;;
+    "small")
+      echo "Setting display to small mode (1280x800)"
+      xrandr --output "$intern" --mode 1280x800
+      ;;
+    "list")
+      echo "Listing all monitors"
+      xrandr --listmonitors
+      ;;
+    "dual")
+      echo "Setting dual display mode"
+      xrandr --output "$extern" --primary --auto --left-of "$intern" --output "$intern" --mode 1680x1050
+      ;;
+    "solo")
+      echo "Setting single display mode (internal only)"
+      xrandr --output "$extern" --off --output "$intern" --auto
+      ;;
+    *)
+      xrandr --output "$intern" --output "$intern" --mode 1680x1050
+      ;;
+  esac
+  return 0
+}
+
+main
+
+#start_time=$(date +%s%N)
+#main
+#end_time=$(date +%s%N)
+#duration=$((end_time - start_time))
+#duration_ms=$(echo "scale=3; $duration / 1000000" | bc)
+#duration_s=$(echo "scale=3; $duration_ms / 1000" | bc)
+#echo "Took $duration_s s"
