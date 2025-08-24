@@ -76,6 +76,9 @@ case $1 in
   ai-coder)
     . ${scripts_dir}/ai-coder.sh "$@"
     ;;
+  ai-helper)
+    . ${scripts_dir}/ai.sh "$@"
+    ;;
   ai)
     . ${scripts_dir}/ai.sh "$@"
     ;;

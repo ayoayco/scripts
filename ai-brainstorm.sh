@@ -2,10 +2,13 @@
 . ${HOME}/ayo.conf
 
 model=$brainstorm
+modelfile=$brainstorm_modelfile
 
 if ! [ "$2" = "" ]; then
   if [ "$2" = "sleep" ]; then
     ollama stop $model
+  elif [ "$2" = "init" ]; then
+    ollama create $model -f "$modelfile"
   else
     start_time=$(date +%s%N)
     ollama run $model "$@"
