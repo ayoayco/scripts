@@ -34,7 +34,7 @@ function main() {
       xrandr --output "$extern" --off --output "$intern" --auto
       ;;
     *)
-      echo "Setting display to small mode (1680x1050)"
+      echo "Setting display to preferred size (1680x1050)"
       xrandr --output "$intern" --output "$intern" --mode 1680x1050
       ;;
   esac
