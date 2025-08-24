@@ -144,4 +144,4 @@ function main() {
   esac
 }
 
-main
+main "$@"
