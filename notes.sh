@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#!/usr/bin/bash
 
 # Load config
 . ${HOME}/ayo.conf
@@ -26,7 +26,7 @@ function createNote() {
 
     if [ "$title" = "" ]; then
       echo "Title cannot be empty."
-      exit;
+      exit 1;
     fi;
 
     file_name=$title.md
@@ -37,15 +37,16 @@ function createNote() {
       install -Dv /dev/null "$full_path" >/dev/null
       # TODO: update to correct heading from old entries
       heading="# $title"
-      echo $heading > "$full_path"
+      echo "$heading" > "$full_path"
       date_heading=$(date +'%b %d, %Y, %a %r')
-      echo $date_heading >> "$full_path"
+      echo "$date_heading" >> "$full_path"
     fi
 
     editFile "$full_path"
 
   } || {
     echo ">>> New note failed"
+    exit 1
   }
 }
 
