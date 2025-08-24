@@ -1,4 +1,7 @@
-model=brainstorm:8b
+# Load config
+. ${HOME}/ayo.conf
+
+model=$brainstorm
 
 if ! [ "$2" = "" ]; then
   if [ "$2" = "sleep" ]; then

@@ -1,4 +1,7 @@
-model=coder:30b
+# Load config
+. ${HOME}/ayo.conf
+
+model=$coder
 
 if ! [ "$2" = "" ]; then
   if [ "$2" = "sleep" ]; then

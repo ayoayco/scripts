@@ -1,4 +1,7 @@
-model=helper:8b
+# Load config
+. ${HOME}/ayo.conf
+
+model=$helper
 
 if ! [ "$2" = "" ]; then
   if [ "$2" = "open-webui" ]; then
@@ -6,7 +9,6 @@ if ! [ "$2" = "" ]; then
       open-webui serve
       python --version
       deactivate
-
   elif [ "$2" = "wake" ]; then
     . $HOME/llm_env/bin/activate
 
