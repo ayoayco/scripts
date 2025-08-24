@@ -5,7 +5,6 @@
 . ${scripts_dir}/functions.sh
 
 {
-
 case $1 in
   ## SHORTCUTS
 
@@ -70,9 +69,6 @@ case $1 in
 
   ## SCRIPTS
 
-  ai-brainstorm)
-    . ${scripts_dir}/ai-brainstorm.sh "$@"
-    ;;
   ai-coder)
     . ${scripts_dir}/ai-coder.sh "$@"
     ;;

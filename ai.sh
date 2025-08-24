@@ -30,13 +30,10 @@ if ! [ "$2" = "" ]; then
   elif [ "$2" = "sleep" ]; then
     ollama stop $model
   else
-    start_time=$(date +%s%N)
+    # tempfile="$(mktemp)"
+    # ollama run $model "$@" --hidethinking > $tempfile
+    # typora $tempfile
     ollama run $model "$@" --hidethinking
-    end_time=$(date +%s%N)
-    duration=$((end_time - start_time))
-    duration_ms=$(echo "scale=3; $duration / 1000000" | bc)
-    duration_s=$(echo "scale=3; $duration_ms / 1000" | bc)
-    echo "Model $model took $duration_s s"
   fi
 else
   ollama run $model --hidethinking
