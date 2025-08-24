@@ -42,7 +42,7 @@ function main() {
 }
 
 start_time=$(date +%s%N)
-main
+main $@
 end_time=$(date +%s%N)
 duration=$((end_time - start_time))
 duration_ms=$(echo "scale=3; $duration / 1000000" | bc)

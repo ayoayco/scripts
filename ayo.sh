@@ -70,6 +70,9 @@ case $1 in
 
   ## SCRIPTS
 
+  ai-brainstorm)
+    . ${scripts_dir}/ai-brainstorm.sh "$@"
+    ;;
   ai-coder)
     . ${scripts_dir}/ai-coder.sh "$@"
     ;;
