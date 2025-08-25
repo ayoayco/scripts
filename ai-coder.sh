@@ -37,16 +37,21 @@ if [[ -n "$other_args" ]]; then
   fi
 fi
 
-
 if ! [ "$other_args" = "" ]; then
   if [ "$other_args" = "sleep" ]; then
     ollama stop $model
   elif [ "$other_args" = "init" ]; then
     ollama create "$model" -f "$modelfile"
   else
-    tempfile="$(mktemp)"
-    ollama run $model "$other_args" --hidethinking > $tempfile
-    typora $tempfile
+    # If -t flag is set, use typora to display output
+    if [ "$typora_flag" = true ]; then
+      tempfile="$(mktemp)"
+      ollama run $model "$other_args" --hidethinking > $tempfile
+      typora $tempfile
+    else
+      # If no -t flag, just run the command normally
+      ollama run $model "$other_args" --hidethinking
+    fi
   fi
 else
   ollama run $model --hidethinking
