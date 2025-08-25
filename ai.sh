@@ -4,15 +4,49 @@
 model=$helper
 modelfile=$helper_modelfile
 
-if ! [ "$2" = "" ]; then
-  if [ "$2" = "open-webui" ]; then
+# Initialize variables
+typora_flag=false
+other_args=""
+
+# Process arguments to handle -t flag and collect other args
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -t)
+      typora_flag=true
+      shift
+      ;;
+    *)
+      other_args="$other_args $1"
+      shift
+      ;;
+  esac
+done
+
+# Set other_args to the first argument if it exists, otherwise empty string
+if [[ -n "$other_args" ]]; then
+  # Remove leading space
+  other_args="${other_args# }"
+
+  IFS=' ' read -ra args_array <<< "$other_args"
+  if [[ ${#args_array[@]} -gt 1 ]]; then
+    # Remove first element and rejoin remaining elements
+    other_args="${args_array[*]:1}"
+  else
+    # If there's only one argument, set other_args to empty string
+    other_args=""
+  fi
+fi
+
+if ! [ "$other_args" = "" ]; then
+
+  if [ "$other_args" = "open-webui" ]; then
       . $HOME/open-webui/.venv/bin/activate
       open-webui serve
       python --version
       deactivate
-  elif [ "$2" = "init" ]; then
+  elif [ "$other_args" = "init" ]; then
     ollama create $model -f $modelfile
-  elif [ "$2" = "wake" ]; then
+  elif [ "$other_args" = "wake" ]; then
     . $HOME/llm_env/bin/activate
 
     export OLLAMA_NUM_GPU=999
@@ -27,14 +61,20 @@ if ! [ "$2" = "" ]; then
 
     echo $ZES_ENABLE_SYSMAN
     echo $SYCL_CACHE_PERSISTENT
-  elif [ "$2" = "sleep" ]; then
+  elif [ "$other_args" = "sleep" ]; then
     ollama stop $model
   else
-    # tempfile="$(mktemp)"
-    # ollama run $model "$@" --hidethinking > $tempfile
-    # typora $tempfile
-    ollama run $model "$@" --hidethinking
+    # If -t flag is set, use typora to display output
+    if [ "$typora_flag" = true ]; then
+      tempfile="$(mktemp)"
+      ollama run $model "$other_args" > $tempfile
+      typora $tempfile
+    else
+      # If no -t flag, just run the command normally
+      ollama run $model "$other_args"
+    fi
   fi
+
 else
-  ollama run $model --hidethinking
+  ollama run $model
 fi
