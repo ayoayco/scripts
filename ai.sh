@@ -48,6 +48,10 @@ if ! [ "$other_args" = "" ]; then
       deactivate
   elif [ "$other_args" = "remote" ]; then
       export OLLAMA_HOST=192.168.0.6
+  elif [ "$other_args" = "list" ]; then
+    OLLAMA_HOST=$host ollama list
+  elif [ "$other_args" = "ps" ]; then
+    OLLAMA_HOST=$host ollama ps
   elif [ "$other_args" = "init" ]; then
     OLLAMA_HOST=$host ollama create $model -f $modelfile
   elif [ "$other_args" = "wake" ]; then

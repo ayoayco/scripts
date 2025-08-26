@@ -43,7 +43,7 @@ if ! [ "$other_args" = "" ]; then
   if [ "$other_args" = "sleep" ]; then
     OLLAMA_HOST=$host ollama stop $model
   elif [ "$other_args" = "init" ]; then
-    ollama create "$model" -f "$modelfile"
+    OLLAMA_HOST=$host ollama create "$model" -f "$modelfile"
   else
     # If -t flag is set, use typora to display output
     if [ "$typora_flag" = true ]; then
