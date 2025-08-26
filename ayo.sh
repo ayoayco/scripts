@@ -69,6 +69,9 @@ case $1 in
 
   ## SCRIPTS
 
+  cozy)
+    . ${scripts_dir}/cozy.sh "$@"
+    ;;
   ai-coder)
     . ${scripts_dir}/ai-coder.sh "$@"
     ;;
