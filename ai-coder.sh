@@ -4,6 +4,8 @@
 model=$coder
 modelfile=$coder_modelfile
 
+host=$ollama_remote_host
+
 # Initialize variables
 typora_flag=false
 other_args=""
@@ -39,20 +41,20 @@ fi
 
 if ! [ "$other_args" = "" ]; then
   if [ "$other_args" = "sleep" ]; then
-    ollama stop $model
+    OLLAMA_HOST=$host ollama stop $model
   elif [ "$other_args" = "init" ]; then
     ollama create "$model" -f "$modelfile"
   else
     # If -t flag is set, use typora to display output
     if [ "$typora_flag" = true ]; then
       tempfile="$(mktemp)"
-      ollama run $model "$other_args" --hidethinking > $tempfile
+      OLLAMA_HOST=$host ollama run $model "$other_args" --hidethinking > $tempfile
       typora $tempfile
     else
       # If no -t flag, just run the command normally
-      ollama run $model "$other_args" --hidethinking
+      OLLAMA_HOST=$host ollama run $model "$other_args" --hidethinking
     fi
   fi
 else
-  ollama run $model --hidethinking
+  OLLAMA_HOST=$host ollama run $model --hidethinking
 fi
