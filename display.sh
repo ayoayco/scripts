@@ -43,6 +43,7 @@ function main() {
       echo "Setting single display mode (ultrawide)"
       xrandr --output "$intern" --off \
         --output "$extern" --auto
+        --mode 3840x2160
       ;;
     "solo")
       echo "Setting single display mode (internal only)"
