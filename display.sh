@@ -33,11 +33,11 @@ function main() {
       echo "Setting dual display left"
       xrandr --output "$extern" --primary --auto --right-of "$intern" --output "$intern" --mode 1680x1050
       ;;
-    "center")
+    "center"|"middle")
       echo "Setting dual display center"
       xrandr \
         --output "$extern" --auto --above "$intern" \
-        --output "$intern" --primary --auto
+        --output "$intern" --primary --mode 1680x1050
       ;;
     "ultra")
       echo "Setting single display mode (ultrawide)"
