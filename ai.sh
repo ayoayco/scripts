@@ -57,11 +57,13 @@ if ! [ "$other_args" = "" ]; then
   elif [ "$other_args" = "wake" ]; then
     . $HOME/llm_env/bin/activate
 
+    unset OCL_ICD_VENDORS
     export OLLAMA_NUM_GPU=999
     export no_proxy=localhost,127.0.0.1
     export ZES_ENABLE_SYSMAN=1
     source $HOME/intel/oneapi/setvars.sh
     export SYCL_CACHE_PERSISTENT=1
+    export SYCL_PI_LEVEL_ZERO_USE_IMMEDIATE_COMMANDLISTS=0
 
     $HOME/llama-cpp/ollama serve
     python --version
@@ -76,7 +78,7 @@ if ! [ "$other_args" = "" ]; then
     if [ "$typora_flag" = true ]; then
       tempfile="$(mktemp)"
       OLLAMA_HOST=$host ollama run $model "$other_args" > $tempfile
-      typora $tempfile
+      typora $tempfile > /dev/null 2>/dev/null &
     else
       # If no -t flag, just run the command normally
       OLLAMA_HOST=$host ollama run $model "$other_args"
@@ -84,5 +86,5 @@ if ! [ "$other_args" = "" ]; then
   fi
 
 else
-  OLLAMA_HOST=$host ollama run $model
+  OLLAMA_HOST=$host ollama run $model --think=false
 fi

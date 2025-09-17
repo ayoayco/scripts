@@ -49,7 +49,7 @@ if ! [ "$other_args" = "" ]; then
     if [ "$typora_flag" = true ]; then
       tempfile="$(mktemp)"
       OLLAMA_HOST=$host ollama run $model "$other_args" --hidethinking > $tempfile
-      typora $tempfile
+      typora $tempfile > /dev/null 2>/dev/null &
     else
       # If no -t flag, just run the command normally
       OLLAMA_HOST=$host ollama run $model "$other_args" --hidethinking

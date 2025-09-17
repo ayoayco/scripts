@@ -1,8 +1,8 @@
 # Load config
 . ${HOME}/ayo.conf
 
-model=$brainstorm
-modelfile=$brainstorm_modelfile
+model=$search
+modelfile=$search_modelfile
 
 host=$ollama_remote_host
 
