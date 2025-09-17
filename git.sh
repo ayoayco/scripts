@@ -9,9 +9,14 @@ command=$1
 journal_dir="${notes_dir}/Journal"
 month_dir=$(date +"%m %b")
 
+git reset HEAD -- .
+other_args="${@:2}"
+echo $@
+echo "args $other_args"
+
 gitStatus() {
   {
-    git add .
+    git add $other_args
     git status
   } || {
     # Report; TODO: write log
@@ -21,9 +26,9 @@ gitStatus() {
 
 gitCommit() {
   {
-    git add .
+    git add $other_args
     read -p "Message: " message
-    git commit -m "$message" $*
+    git commit -m "$message" $other_args
   }|| {
     # Report; TODO: write log
     echo ">>> Commit failed"
@@ -40,23 +45,15 @@ gitPush() {
 }
 
 if [ "$1" = "diff" ] || [ "$1" = "d" ]; then
-  git add .
+  git add $other_args
   git diff --staged
 elif [ "$1" = "stat" ]; then
   gitStatus
 elif [ "$1" = "push" ]; then
   gitPush
 else
-  if [ "$1" = "g" ] || [ "$1" = "git" ]; then
-    git reset HEAD -- .
-    git add .
-    git status
-    gitCommit
-  else
-    git reset HEAD -- .
-    git add $*
-    git status
-    gitCommit $*
-  fi
+  git add $other_args
+  git status
+  gitCommit $other_args
   gitPush
 fi
