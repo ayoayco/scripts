@@ -54,13 +54,13 @@ case $1 in
     ;;
 
   gd) # git diff
-    . ${scripts_dir}/git.sh diff "$@"
+    . ${scripts_dir}/git.sh diff "${@:2}"
     ;;
   gs) # git status
-    . ${scripts_dir}/git.sh stat "$@"
+    . ${scripts_dir}/git.sh stat "${@:2}"
     ;;
   gp) # git push
-    . ${scripts_dir}/git.sh push "$@"
+    . ${scripts_dir}/git.sh push "${@:2}"
     ;;
 
   mt) # mail task
@@ -72,8 +72,8 @@ case $1 in
   cozy)
     . ${scripts_dir}/cozy.sh "$@"
     ;;
-  ai-coder)
-    . ${scripts_dir}/ai-coder.sh "$@"
+  ai-search)
+    . ${scripts_dir}/ai-search.sh "$@"
     ;;
   ai-brainstorm)
     . ${scripts_dir}/ai-brainstorm.sh "$@"
