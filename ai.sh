@@ -10,6 +10,8 @@ modelfile=$helper_modelfile
 typora_flag=false
 other_args=${@:2}
 
+# TODO: extract typora flag
+
 if ! [ "$other_args" = "" ]; then
   if [ "$other_args" = "open-webui" ]; then
       . $HOME/open-webui/.venv/bin/activate
