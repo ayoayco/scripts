@@ -11,8 +11,10 @@ month_dir=$(date +"%m %b")
 
 git reset HEAD -- .
 other_args="${@:2}"
-echo $@
-echo "args $other_args"
+
+if [ "$other_args" = "" ]; then
+  other_args="."
+fi
 
 gitStatus() {
   {
