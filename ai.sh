@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # Load config
 . ${HOME}/ayo.conf
 
@@ -18,15 +20,17 @@ if ! [ "$other_args" = "" ]; then
       open-webui serve
       python --version
       deactivate
-  elif [ "$other_args" = "remote" ]; then
+  elif [ "$2" = "remote" ]; then
       export OLLAMA_HOST=192.168.0.6
-  elif [ "$other_args" = "list" ]; then
+  elif [ "$2" = "list" ]; then
     OLLAMA_HOST=$host ollama list
-  elif [ "$other_args" = "ps" ]; then
+  elif [ "$2" = "ps" ]; then
     OLLAMA_HOST=$host ollama ps
-  elif [ "$other_args" = "init" ]; then
+  elif [ "$2" = "rm" ]; then
+    OLLAMA_HOST=$host ollama rm "$3"
+  elif [ "$2" = "init" ]; then
     OLLAMA_HOST=$host ollama create $model -f $modelfile
-  elif [ "$other_args" = "wake" ]; then
+  elif [ "$2" = "wake" ]; then
     . $HOME/llm_env/bin/activate
 
     unset OCL_ICD_VENDORS
@@ -43,7 +47,7 @@ if ! [ "$other_args" = "" ]; then
 
     echo $ZES_ENABLE_SYSMAN
     echo $SYCL_CACHE_PERSISTENT
-  elif [ "$other_args" = "sleep" ]; then
+  elif [ "$2" = "sleep" ]; then
     OLLAMA_HOST=$host ollama stop $model
   else
     # If -t flag is set, use typora to display output
