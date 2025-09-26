@@ -72,14 +72,8 @@ case $1 in
   cozy)
     . ${scripts_dir}/cozy.sh "$@"
     ;;
-  ai-search)
-    . ${scripts_dir}/ai-search.sh "$@"
-    ;;
-  ai-brainstorm)
-    . ${scripts_dir}/ai-brainstorm.sh "$@"
-    ;;
-  ai-helper)
-    . ${scripts_dir}/ai.sh "$@"
+  translate)
+    . ${scripts_dir}/ai-translate.sh "$@"
     ;;
   ai)
     . ${scripts_dir}/ai.sh "$@"
