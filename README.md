@@ -56,5 +56,5 @@ $ cp example.conf ~/ayo.conf
 
 ---
 
-*Just keep scripting.*
+*Just keep scripting. :)*
 *A project by [Ayo](https://ayo.ayco.io)*
