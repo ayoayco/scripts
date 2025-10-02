@@ -13,6 +13,14 @@ command=$2
 
 function main() {
   case $command in
+    "hybrid")
+      sudo system76-power graphics hybrid
+      sudo reboot
+      ;;
+    "nvidia")
+      sudo system76-power graphics nvidia
+      sudo reboot
+      ;;
     "big")
       echo "Setting display to big mode (1920x1200)"
       xrandr --output "$intern" --mode 1920x1200
