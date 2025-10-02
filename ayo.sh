@@ -75,6 +75,9 @@ case $1 in
   translate)
     . ${scripts_dir}/ai-translate.sh "$@"
     ;;
+  coder)
+    . ${scripts_dir}/ai-coder.sh "$@"
+    ;;
   ai)
     . ${scripts_dir}/ai.sh "$@"
     ;;
