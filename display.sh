@@ -6,7 +6,7 @@
 #. ${HOME}/ayo.conf
 #. ${scripts_dir}/functions.sh
 
-intern=eDP-1
+intern=eDP-1-1
 extern=DP-1
 
 command=$2
