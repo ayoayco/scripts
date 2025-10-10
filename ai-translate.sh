@@ -4,7 +4,7 @@
 . ${HOME}/ayo.conf
 
 host=$ollama_remote_host
-model="gemma3:4b"
+model="helper:latest"
 
 TEMP=$(mktemp)
 vim $TEMP
