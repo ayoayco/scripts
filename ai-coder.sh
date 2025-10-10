@@ -26,7 +26,7 @@ if ! [ "$other_args" = "" ]; then
       typora $tempfile > /dev/null 2>/dev/null &
     else
       # If no -t flag, just run the command normally
-      OLLAMA_HOST=$host ollama run $model "$other_args"
+      OLLAMA_HOST=$host ollama run $model "$other_args" --hidethinking
     fi
   fi
 
