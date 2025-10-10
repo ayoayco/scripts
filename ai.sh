@@ -62,7 +62,7 @@ if ! [ "$other_args" = "" ]; then
   fi
 
 else
-  OLLAMA_HOST=$host ollama run $model --think=false
+  OLLAMA_HOST=$host ollama run $model --hidethinking
 fi
 
 OLLAMA_HOST=$host ollama stop $model
