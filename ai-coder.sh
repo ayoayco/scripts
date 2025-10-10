@@ -33,3 +33,5 @@ if ! [ "$other_args" = "" ]; then
 else
   OLLAMA_HOST=$host ollama run $model --think=false
 fi
+
+OLLAMA_HOST=$host ollama stop $model
