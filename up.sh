@@ -1,12 +1,11 @@
 #! /usr/bin/bash
 
-# Update commands
-
-# Load config & functions
-#. ${HOME}/ayo.conf
-#. ${scripts_dir}/functions.sh
-
-#command=$1
+# Load config file
+. ${HOME}/ayo.conf
 
 sudo apt update && sudo apt upgrade -y
-flatpak update -y
+
+# if $skip_flatpak is set in config file
+if ! [ $skip_flatpak ]; then
+  flatpak update -y
+fi
