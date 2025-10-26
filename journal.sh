@@ -7,8 +7,34 @@
 command=$1
 journal_dir="${notes_dir}/Journal"
 month_dir=$(date +"%m %b")
+typora_flag=false
 
-getopts "t" typora; #check if -t flag is given
+# Parse options
+while getopts "t" opt; do
+  case "$opt" in
+    t)
+      typora_flag=true          # -t was given
+      ;;
+  esac
+done
+
+# parse string args (when used as a function and passed "$@")
+POSITIONAL_ARGS=()
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -t)
+      typora_flag=true
+      shift # past argument
+      ;;
+    *)
+      POSITIONAL_ARGS+=("$1") # save positional arg
+      shift # past argument
+      ;;
+  esac
+done
+
+echo "typora flag: $typora_flag"
+echo "args: $@"
 
 file_name=$(date +'%m.%d.%Y').md
 full_path="${journal_dir}/${month_dir}/${file_name}"
@@ -23,8 +49,9 @@ function createEntry() {
       echo $date_heading > "$full_path"
     fi
 
+
     # Open in editor
-    if [ "$typora" = "t" ]; then
+    if [ "$typora_flag" = true ]; then
       typora "$full_path"
     else
       vim "$full_path"
@@ -41,7 +68,6 @@ if [ "$1" = "append" ]; then
     read -p "Add thought: " thought
     time=$(date +'%r')
     echo $'\n'\> $thought \[$time\] >> "$full_path"
-    clear
   } || {
     echo ">>> Append failed"
   }
@@ -54,6 +80,5 @@ elif [ "$1" = "copy" ] || [ "$1" = "c" ]; then
 ## New entry or edit
 else
   createEntry
-  clear
 fi
 notesSync
