@@ -33,9 +33,6 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-echo "typora flag: $typora_flag"
-echo "args: $@"
-
 file_name=$(date +'%m.%d.%Y').md
 full_path="${journal_dir}/${month_dir}/${file_name}"
 
