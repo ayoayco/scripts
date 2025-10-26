@@ -9,10 +9,32 @@ model=$helper
 modelfile=$helper_modelfile
 
 # Initialize variables
-typora_flag=false
 other_args=${@:2}
+typora_flag=false
 
-# TODO: extract typora flag
+# Parse options
+while getopts "t" opt; do
+  case "$opt" in
+    t)
+      typora_flag=true          # -t was given
+      ;;
+  esac
+done
+
+# parse string args (when used as a function and passed "$@")
+POSITIONAL_ARGS=()
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -t)
+      typora_flag=true
+      shift # past argument
+      ;;
+    *)
+      POSITIONAL_ARGS+=("$1") # save positional arg
+      shift # past argument
+      ;;
+  esac
+done
 
 if ! [ "$other_args" = "" ]; then
   if [ "$other_args" = "open-webui" ]; then
@@ -53,7 +75,7 @@ if ! [ "$other_args" = "" ]; then
     # If -t flag is set, use typora to display output
     if [ "$typora_flag" = true ]; then
       tempfile="$(mktemp)"
-      OLLAMA_HOST=$host ollama run $model "$other_args" > $tempfile
+      OLLAMA_HOST=$host ollama run $model "$other_args" --hidethinking > $tempfile
       typora $tempfile > /dev/null 2>/dev/null &
     else
       # If no -t flag, just run the command normally
