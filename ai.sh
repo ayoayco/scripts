@@ -12,15 +12,6 @@ modelfile=$helper_modelfile
 other_args=${@:2}
 typora_flag=false
 
-# Parse options
-while getopts "t" opt; do
-  case "$opt" in
-    t)
-      typora_flag=true          # -t was given
-      ;;
-  esac
-done
-
 # parse string args (when used as a function and passed "$@")
 POSITIONAL_ARGS=()
 while [[ $# -gt 0 ]]; do
