@@ -9,15 +9,6 @@ journal_dir="${notes_dir}/Journal"
 month_dir=$(date +"%m %b")
 typora_flag=false
 
-# Parse options
-while getopts "t" opt; do
-  case "$opt" in
-    t)
-      typora_flag=true          # -t was given
-      ;;
-  esac
-done
-
 # parse string args (when used as a function and passed "$@")
 POSITIONAL_ARGS=()
 while [[ $# -gt 0 ]]; do
@@ -49,7 +40,7 @@ function createEntry() {
 
     # Open in editor
     if [ "$typora_flag" = true ]; then
-      typora "$full_path"
+      typora "$full_path" > /dev/null 2>/dev/null
     else
       vim "$full_path"
     fi
