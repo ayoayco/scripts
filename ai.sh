@@ -33,17 +33,17 @@ if ! [ "$other_args" = "" ]; then
       open-webui serve
       python --version
       deactivate
-  elif [ "$2" = "remote" ]; then
+  elif [ "$other_args" = "remote" ]; then
       export OLLAMA_HOST=192.168.0.6
-  elif [ "$2" = "list" ]; then
+  elif [ "$other_args" = "list" ]; then
     OLLAMA_HOST=$host ollama list
-  elif [ "$2" = "ps" ]; then
+  elif [ "$other_args" = "ps" ]; then
     OLLAMA_HOST=$host ollama ps
-  elif [ "$2" = "rm" ]; then
+  elif [ "$other_args" = "rm" ]; then
     OLLAMA_HOST=$host ollama rm "$3"
-  elif [ "$2" = "init" ]; then
+  elif [ "$other_args" = "init" ]; then
     OLLAMA_HOST=$host ollama create $model -f $modelfile
-  elif [ "$2" = "wake" ]; then
+  elif [ "$other_args" = "wake" ]; then
     . $HOME/llm_env/bin/activate
 
     unset OCL_ICD_VENDORS
@@ -60,7 +60,7 @@ if ! [ "$other_args" = "" ]; then
 
     echo $ZES_ENABLE_SYSMAN
     echo $SYCL_CACHE_PERSISTENT
-  elif [ "$2" = "sleep" ]; then
+  elif [ "$other_args" = "sleep" ]; then
     OLLAMA_HOST=$host ollama stop $model
   else
     # If -t flag is set, use typora to display output
