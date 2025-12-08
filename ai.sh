@@ -78,4 +78,5 @@ else
   OLLAMA_HOST=$host ollama run $model --hidethinking
 fi
 
-# OLLAMA_HOST=$host ollama stop $model
+# release memory
+OLLAMA_HOST=$host ollama stop $model
