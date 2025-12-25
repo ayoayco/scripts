@@ -111,5 +111,8 @@ case $1 in
   ms)
     quickemu --vm ${HOME}/macos-monterey.conf --kill
     ;;
+  *)
+    echo "Command not found"
+    ;;
 esac
 }
