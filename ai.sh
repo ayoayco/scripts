@@ -60,6 +60,8 @@ if ! [ "$other_args" = "" ]; then
 
     echo $ZES_ENABLE_SYSMAN
     echo $SYCL_CACHE_PERSISTENT
+  elif [ "$other_args" = "update" ]; then
+    curl -fsSL https://ollama.com/install.sh | sh
   elif [ "$other_args" = "sleep" ]; then
     OLLAMA_HOST=$host ollama stop $model
   else
