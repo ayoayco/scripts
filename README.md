@@ -36,21 +36,42 @@ $ cp example.conf ~/ayo.conf
 1. `timeout` - install on mac via coreutils: `brew install coreutils`
 1. `ollama` - running a locall LLM via ollama. See [installation on linux](https://ollama.com/download/linux)
 
-## Scripts
 
+## Examples
+
+To ask the AI a question
+
+```
+ayo ai "Why is the sky blue?"
+```
+
+I also set a shortcut alias to `ayo` with `yo` because I'm lazy
+
+```
+yo ai "But why is the sky orange on sunrise / sunset?"
+```
+
+If I want to use the `journal` script, I can use the shortcut `j`. The following will create a new file for the current day if it doesn't exist yet, otherwise it open an editor to the existing entry
+
+```
+yo j
+```
+
+## Features
+1. Create journal entry for the day, or edit if it already exists
+1. Access `ollama` LLM with ease
+1. Operating System stuff like, update packages, adjust display to some preferences, etc.
+
+## Scripts
 1. ayo - parent command, lists all available scripts or accepts parameters
-1. journal - creates a new journal entry if it doesn’t exist yet; opens on editor
-  1. append - append one thought at the end of the day's entry
+1. journal (j) - creates a new journal entry if it doesn’t exist yet; opens on editor
+  1. append (ja) - append one thought at the end of the day's entry
 1. notes - notes management
 1. git (g) - args can be list of files to commit & push
   1. stat (gs) - git status
   1. push (gp) - git push
 
-## Features
-1. Autosync for notes & journal via git
-
 ## Planned
-
 1. blog - tools for blogging (eg, bn - generate blog from a note)
 1. config - create configuration for variables (eg, editor, locations)
 
