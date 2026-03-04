@@ -17,3 +17,7 @@ Environment="OLLAMA_HOST=0.0.0.0:11434"
 sudo systemctl daemon-reload
 sudo systemctl restart ollama
 ```
+
+---
+
+See source: https://atlassc.net/2024/10/24/how-to-share-ollama-server-through-ip-address-and-port
