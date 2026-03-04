@@ -3,20 +3,6 @@
 Personal BASH scripts for productivity
 
 ## Setup
-1\. clone the repo
-```bash
-$ git clone git@git.sr.ht:~ayoayco/scripts
-```
-
-2\. Copy config and populate
-```bash
-$ cp example.config ~/ayo.conf
-$ vim ~/ayo.conf
-```
-
-3\. update your .bashrc to add an alias for the parent command `scripts/ayo.sh`
-
-## Set up
 
 1\. Clone repo
 ``` bash
@@ -36,6 +22,7 @@ $ cp example.conf ~/ayo.conf
 1. `timeout` - install on mac via coreutils: `brew install coreutils`
 1. `ollama` - running a locall LLM via ollama. See [installation on linux](https://ollama.com/download/linux)
 
+4\. update your .bashrc to add an alias for the parent command `scripts/ayo.sh`
 
 ## Examples
 
