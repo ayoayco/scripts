@@ -7,7 +7,7 @@
 #. ${scripts_dir}/functions.sh
 
 intern=eDP-1-1
-extern=HDMI-0
+extern=HDMI-1
 
 command=$2
 
