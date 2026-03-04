@@ -62,6 +62,7 @@ if ! [ "$other_args" = "" ]; then
     echo $SYCL_CACHE_PERSISTENT
   elif [ "$other_args" = "update" ]; then
     curl -fsSL https://ollama.com/install.sh | sh
+    echo "See instructions on how to expose ollama in the local network: https://git.ayo.run/ayo/scripts/src/branch/main/expose-ollama.md"
   elif [ "$other_args" = "sleep" ]; then
     OLLAMA_HOST=$host ollama stop $model
   else
