@@ -3,16 +3,13 @@
 # laptop display management
 
 # Load config & functions
-#. ${HOME}/ayo.conf
-#. ${scripts_dir}/functions.sh
+. ${HOME}/ayo.conf
+. ${scripts_dir}/functions.sh
 
 command=$2
 
 function main() {
   case $command in
-    #  0: +*DP-1-1 2560/798x1080/334+0+0  DP-1-1
-    # 1: +HDMI-1 1920/521x1080/293+2560+0  HDMI-1
-
     "edit")
       vim "${scripts_dir}/display.sh"
       ;;
