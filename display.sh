@@ -6,13 +6,16 @@
 #. ${HOME}/ayo.conf
 #. ${scripts_dir}/functions.sh
 
-intern=eDP-1-1
-extern=HDMI-1
-
 command=$2
 
 function main() {
   case $command in
+    #  0: +*DP-1-1 2560/798x1080/334+0+0  DP-1-1
+    # 1: +HDMI-1 1920/521x1080/293+2560+0  HDMI-1
+
+    "edit")
+      vim "${scripts_dir}/display.sh"
+      ;;
     "hybrid")
       sudo system76-power graphics hybrid
       sudo reboot
@@ -23,11 +26,11 @@ function main() {
       ;;
     "big")
       echo "Setting display to big mode (1920x1200)"
-      xrandr --output "$intern" --mode 1920x1200
+      xrandr --output "$secondary" --mode 1920x1200
       ;;
     "small")
       echo "Setting display to small mode (1280x800)"
-      xrandr --output "$intern" --mode 1280x800
+      xrandr --output "$secondary" --mode 1280x800
       ;;
     "list")
       echo "Listing all monitors"
@@ -35,32 +38,32 @@ function main() {
       ;;
     "dual"|"right")
       echo "Setting dual display right"
-      xrandr --output "$extern" --primary --auto --left-of "$intern" --output "$intern" --mode 1680x1050
+      xrandr --output "$main" --primary --auto --left-of "$secondary" --output "$secondary"
       ;;
     "left")
       echo "Setting dual display left"
-      xrandr --output "$extern" --primary --auto --right-of "$intern" --output "$intern" --mode 1680x1050
+      xrandr --output "$main" --primary --auto --right-of "$secondary" --output "$secondary"
       ;;
     "center"|"middle")
       echo "Setting dual display center"
       xrandr \
-        --output "$extern" --auto --above "$intern" \
-        --output "$intern" --primary --mode 1680x1050
+        --output "$main" --auto --above "$secondary" \
+        --output "$secondary" --primary --mode 1680x1050
       ;;
     "ultra")
       echo "Setting single display mode (ultrawide)"
-      xrandr --output "$intern" --off \
-        --output "$extern" --auto
+      xrandr --output "$secondary" --off \
+        --output "$main" --auto
         --mode 3840x2160
       ;;
     "solo")
-      echo "Setting single display mode (internal only)"
-      xrandr --output "$extern" --off \
-        --output "$intern" --auto
+      echo "Setting single display mode (secondaryal only)"
+      xrandr --output "$main" --off \
+        --output "$secondary" --auto
       ;;
     *)
       echo "Setting display to preferred size (1680x1050)"
-      xrandr --output "$intern" --output "$intern" --mode 1680x1050
+      xrandr --output "$secondary" --output "$secondary" --mode 1680x1050
       ;;
   esac
   return 0
