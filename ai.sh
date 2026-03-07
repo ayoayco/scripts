@@ -29,6 +29,9 @@ done
 
 function main() {
   case $command in
+    "edit")
+      vim "${scripts_dir}/ai.sh"
+      ;;
     "open-webui")
       . $HOME/open-webui/.venv/bin/activate
       open-webui serve
