@@ -45,7 +45,7 @@ function main() {
       echo "Setting dual display center"
       xrandr \
         --output "$main" --auto --above "$secondary" \
-        --output "$secondary" --primary --mode 1680x1050
+        --output "$secondary" --primary
       ;;
     "ultra")
       echo "Setting single display mode (ultrawide)"
@@ -60,7 +60,7 @@ function main() {
       ;;
     *)
       echo "Setting display to preferred size (1680x1050)"
-      xrandr --output "$secondary" --output "$secondary" --mode 1680x1050
+      xrandr --output "$secondary" --output "$secondary"
       ;;
   esac
   return 0
