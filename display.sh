@@ -44,19 +44,21 @@ function main() {
     "center"|"middle")
       echo "Setting dual display center"
       xrandr \
-        --output "$main" --auto --above "$secondary" \
-        --output "$secondary" --primary
+        --output "$internal" --auto --above "$secondary" \
+        --output "$secondary" --primary \
       ;;
     "ultra")
       echo "Setting single display mode (ultrawide)"
       xrandr --output "$secondary" --off \
-        --output "$main" --auto
+        --output "$main" --auto \
+        --output "$internal" --off
         --mode 3840x2160
       ;;
     "solo")
       echo "Setting single display mode (secondaryal only)"
       xrandr --output "$main" --off \
-        --output "$secondary" --auto
+        --output "$secondary" --auto \
+        --output "$internal" --off
       ;;
     *)
       echo "Setting display to preferred size (1680x1050)"
