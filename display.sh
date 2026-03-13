@@ -35,25 +35,49 @@ function main() {
       ;;
     "dual"|"right")
       echo "Setting dual display right"
-      xrandr --output "$main" --primary --auto --left-of "$secondary" --output "$secondary"
+      xrandr \
+        --output "$main" --primary --auto --left-of "$secondary" \
+        --output "$secondary" --auto \
+        --output "$internal" --off
       ;;
     "left")
       echo "Setting dual display left"
-      xrandr --output "$main" --primary --auto --right-of "$secondary" --output "$secondary"
+      xrandr \
+        --output "$main" --primary --auto --right-of "$secondary" \
+        --output "$internal" --off
       ;;
     "center"|"middle")
       echo "Setting dual display center"
       xrandr \
-        --output "$internal" --auto --above "$secondary" \
-        --output "$secondary" --primary \
+        --output "$internal" --auto \
+        --output "$secondary" --auto --above "$internal" \
+        --output "$main" --primary --auto --left-of "$secondary" \
+        --output "$internal" --primary \
       ;;
+
+    "full")
+      echo "Enabling all monitors"
+      xrandr \
+        --output "$internal" --auto --mode 1680x1050 \
+        --output "$secondary" --auto --left-of "$internal" \
+        --output "$main" --primary --auto --left-of "$secondary" \
+      ;;
+
     "ultra")
       echo "Setting single display mode (ultrawide)"
-      xrandr --output "$secondary" --off \
-        --output "$main" --auto \
+      xrandr \
+        --output "$secondary" --off \
+        --output "$main" --auto --primary \
         --output "$internal" --off
-        --mode 3840x2160
       ;;
+    "no-ultra")
+      echo "Setting display mode no ultrawide"
+      xrandr \
+        --output "$main" --off \
+        --output "$internal" --auto --mode 1680x1050 \
+        --output "$secondary" --auto --left-of "$internal" \
+      ;;
+
     "solo")
       echo "Setting single display mode (secondaryal only)"
       xrandr --output "$main" --off \
