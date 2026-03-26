@@ -66,15 +66,15 @@ function main() {
     "main")
       echo "Setting single display mode (main)"
       xrandr \
-        --output "$main" --auto --primary \
+        --output "$main" --primary --mode 1920x1080 --rate 119.99 \
         --output "$secondary" --off \
         --output "$internal" --off
       ;;
-    "duplicate-main")
+    "duplicate")
       echo "Setting single display mode (main)"
       xrandr \
-        --output "$main" --auto --primary \
-        --output "$secondary" --same-as "$main" \
+        --output "$main" --mode 1280x720 --primary \
+        --output "$secondary" --mode 1280x720 --same-as "$main" \
         --output "$internal" --off
       ;;
 
