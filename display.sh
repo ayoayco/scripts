@@ -23,7 +23,7 @@ function main() {
       ;;
     "big")
       echo "Setting display to big mode (1920x1200)"
-      xrandr --output "$secondary" --mode 1920x1200
+      xrandr --output "$internal" --mode 1920x1200
       ;;
     "small")
       echo "Setting display to small mode (1280x800)"
@@ -63,27 +63,42 @@ function main() {
         --output "$main" --primary --auto --left-of "$secondary" \
       ;;
 
-    "ultra")
-      echo "Setting single display mode (ultrawide)"
+    "main")
+      echo "Setting single display mode (main)"
       xrandr \
-        --output "$secondary" --off \
         --output "$main" --auto --primary \
+        --output "$secondary" --off \
         --output "$internal" --off
       ;;
-    "no-ultra")
-      echo "Setting display mode no ultrawide"
+    "duplicate-main")
+      echo "Setting single display mode (main)"
       xrandr \
-        --output "$main" --off \
-        --output "$internal" --auto --mode 1680x1050 \
-        --output "$secondary" --auto --left-of "$internal" \
+        --output "$main" --auto --primary \
+        --output "$secondary" --same-as "$main" \
+        --output "$internal" --off
       ;;
 
-    "solo")
-      echo "Setting single display mode (secondaryal only)"
+    "no-main")
+      echo "Setting display mode no main"
+      xrandr \
+        --output "$main" --off \
+        --output "$secondary" --auto --left-of "$internal" \
+        --output "$internal" --auto --mode 1680x1050 \
+      ;;
+
+    "secondary")
+      echo "Setting single display mode (secondary only)"
       xrandr --output "$main" --off \
         --output "$secondary" --auto \
         --output "$internal" --off
       ;;
+    "internal")
+      echo "Setting single display mode (secondary only)"
+      xrandr --output "$main" --off \
+        --output "$secondary" --off \
+        --output "$internal" --auto
+      ;;
+
     *)
       echo "Setting display to preferred size (1680x1050)"
       xrandr --output "$secondary" --output "$secondary"
