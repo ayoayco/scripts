@@ -90,6 +90,9 @@ case $1 in
   u | up)
     . ${scripts_dir}/up.sh "$@"
     ;;
+  c | conf)
+    . ${scripts_dir}/conf.sh "$@"
+    ;;
   g | git)
     . ${scripts_dir}/git.sh "$@"
     ;;
