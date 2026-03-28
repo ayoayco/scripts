@@ -1,6 +1,6 @@
 # Ayo's Scripts
 
-Personal BASH scripts for productivity
+BASH scripting. Escalated quickly.
 
 ## Setup
 
