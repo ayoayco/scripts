@@ -1,10 +1,6 @@
 #!/usr/bin/bash
 
-# laptop display management
-
-# Load config & functions
-. ${HOME}/ayo.conf
-. ${scripts_dir}/functions.sh
+# configuration management
 
 command=$2
 
