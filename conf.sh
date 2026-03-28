@@ -2,12 +2,25 @@
 
 # configuration management
 
+. $HOME/ayo.conf
+
 command=$2
 
 function main() {
   case $command in
-    "edit")
-      echo "Editing config file"
+    "edit") # edit the script
+      echo "Editing config script"
+      vim "$scripts_dir/conf.sh"
+      ;;
+    "init") #TODO: a command that initializes the configuration
+      echo "Initializing config file..."
+      # check if there is an existing config file
+        # if yes, ask if user is sure?
+          # if yes, back up with datetime
+      # copy example config file to $HOME/ayo.conf
+      ;;
+    *) # edit the configuration
+      echo "Editing config file..."
       vim "$HOME/ayo.conf"
       ;;
   esac
